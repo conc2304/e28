@@ -1,2 +1,1 @@
-# e28
-Course work for DGMD E-28
+# e28 Course work
