@@ -163,3 +163,6 @@ groupRandomWordsByLength(randomWordList);
 let takeAGuess = (form) => {
     console.log(form);
 }
+
+
+let stuff = false;
