@@ -49,6 +49,10 @@
   visibility: hidden;
 }
 
+.body-part.strike {
+  visibility: visible;
+}
+
 #head {
   width: 50px;
   height: 60px;
@@ -149,7 +153,7 @@
 
 
 
-#letter-guess-wrapper, .letter-box-wrapper {
+#letters-to-guess-wrapper, .letter-box-wrapper {
   text-align: center;
   height: 60px;
 }
@@ -177,4 +181,14 @@
 
 .strike-wrapper {
   text-align: center;
+}
+
+
+#guessed-letters-wrapper {
+  height: 50px;
+}
+#guessed-letters-wrapper div{
+  display: inline-block;
+  margin: 15px;
+  text-transform: capitalize;
 }

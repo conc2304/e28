@@ -29,25 +29,32 @@
                     <div id="right-foot" class="body-part"></div>
                 </div>
             </div>
-        </div>
 
-        <div id="letter-guess-wrapper" class="container"></div>
+            <div id="letters-to-guess-wrapper" class="container"></div>
 
-        <div class="container">
+            <h3>Guessed Letters</h3>
+            <div id="guessed-letters-wrapper"></div>
+
+            <h3 class="strike-wrapper">Strikes Left <span id="strikes-left"></span></h3>
+
+            <form id="take-a-guess">
+                <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" />
+                <label for="hangman-guess">Guess either a letter or the full word.</label>
+                <!-- <input id="word-to-guess" type="hidden" name="word-to-guess" value=''> -->
+                <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
+                    word once.</small>
+            </form>
+
+
             <div class="buttons-wrapper block">
+
+                <h3>Start over with a new word</h3>
                 <button onclick="getRandomWord('short')">Short Word</button>
                 <button onclick="getRandomWord('medium')">Medium Word</button>
                 <button onclick="getRandomWord('long')">Long Word</button>
             </div>
-            <form id="take-a-guess">
-                <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text">
-                <label for="hangman-guess">Guess either a letter or the full word.</label>
-                <!-- <input id="word-to-guess" type="hidden" name="word-to-guess" value=''> -->
-                <small>Guessing more than 1 letter counts as guessing the full word.  <br>You can only guess the full word once.</small>
-            </form>
-
-            <h3 class="strike-wrapper">Strikes Left <span id="strikes-left"></span></h4>
         </div>
+
     </div>
 
     <script src="game.js"></script>

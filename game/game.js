@@ -6,8 +6,9 @@ let hangmanWords = {
   long: []
 };
 
+let lettersGuessed = [];
+
 let randomWordList = [
-  "girls",
   "organization",
   "snakes",
   "romantic",
@@ -59,15 +60,17 @@ let randomWordList = [
 const resetStrikeVal = 6;
 let strikesLeft = resetStrikeVal;
 
-let guessBoxWrapper = document.getElementById("letter-guess-wrapper");
-let form = document.getElementById("take-a-guess");
-let strikeCount = document.getElementById("strikes-left");
+let guessBoxWrapperEl = document.getElementById("letters-to-guess-wrapper");
+let formEl = document.getElementById("take-a-guess");
+let strikeCountEl = document.getElementById("strikes-left");
+let guessedLettersEl = document.getElementById("guessed-letters-wrapper");
+let guessInputEl = document.getElementById("hangman-guess");
 
 document.getElementById("take-a-guess").addEventListener(
   "submit",
   function(e) {
     e.preventDefault();
-    let formData = new FormData(form);
+    let formData = new FormData(formEl);
     let guess = formData.get("hangman-guess");
 
     handleGuess(guess);
@@ -86,8 +89,6 @@ let groupRandomWordsByLength = randomWordList => {
     long: []
   };
 
-
-
   for (let word of randomWordList) {
     if (word.length > 9) {
       hangmanWords["long"].push(word);
@@ -103,21 +104,21 @@ let groupRandomWordsByLength = randomWordList => {
  *
  * @param {string} wordLength
  */
-let getRandomWord = (wordLength) => {
+let getRandomWord = wordLength => {
   if (!availableWordLengths.includes(wordLength)) {
     wordLength = "medium";
   }
 
   let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
   wordToGuess = hangmanWords[wordLength][randomInt];
-  
-  strikeCount.innerText = resetStrikeVal;
 
-  while (guessBoxWrapper.firstChild) {
-    guessBoxWrapper.firstChild.remove();
+  strikeCountEl.innerText = resetStrikeVal;
+
+  while (guessBoxWrapperEl.firstChild) {
+    guessBoxWrapperEl.firstChild.remove();
   }
 
-  guessBoxWrapper.appendChild(buildGuessingBoxes(wordToGuess));
+  guessBoxWrapperEl.appendChild(buildGuessingBoxes(wordToGuess));
 };
 
 /**
@@ -132,7 +133,6 @@ let buildGuessingBoxes = wordToGuess => {
   while (i < wordToGuess.length) {
     letterBox = document.createElement("div");
     letterBox.classList.add("letter-box");
-    // letterBox.appendChild(document.createTextNode(wordToGuess.charAt(i)));
     letterBoxes.appendChild(letterBox);
     i++;
   }
@@ -140,64 +140,80 @@ let buildGuessingBoxes = wordToGuess => {
   return letterBoxes;
 };
 
-
 /**
- * 
- * @param {string} guess 
+ *
+ * @param {string} guess
  */
-let handleGuess = (guess) => {
+let handleGuess = guess => {
+
+  guessInputEl.value ='';
+
+  if (lettersGuessed.includes(guess)) {
+    return;
+  }
+
   if (guess.length > 1) {
     if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
       console.log("Winner Winner Chicken Dinner!");
     } else {
       console.log("Loser Loser Booger Chooser!");
-      strikeCount.innerText = 0;
+      strikeCountEl.innerText = 0;
     }
-  }
-  else if (guess.length === 1) {
-    let indicesOfGuess = getGuessIndexes(guess, wordToGuess);
-    populateGuessedLetter(guess, indicesOfGuess);
-  } 
-  else {
-      console.log('wrong');
-    strikeCount.innerText = --strikesLeft;
-  }
+  } else if (guess.length === 1) {
 
+
+    let indicesOfGuess = getGuessIndexes(guess, wordToGuess);
+    if (indicesOfGuess.length === 0) {
+      handleStrike();
+    } else {
+      populateGuessedLetter(guess, indicesOfGuess);
+    }
+    guessedLetterPop(guess);
+  } else {
+    console.log("wrong");
+  }
 };
 
-
-
 /**
- * 
- * @param {string} guess 
- * @param {string} wordToGuess 
+ *
+ * @param {string} guess
+ * @param {string} wordToGuess
  */
 let getGuessIndexes = (guess, wordToGuess) => {
-
   let indices = [];
   for (let i = 0; i < wordToGuess.length; i++) {
     if (wordToGuess[i] === guess) {
-        indices.push(i);
+      indices.push(i);
     }
   }
 
   return indices;
 };
 
+/**
+ *
+ * @param {string} letter
+ * @param {array} indices
+ */
+let populateGuessedLetter = (letter, indices) => {
+  let parent = document.getElementById("letter-box-wrapper");
+  for (let i = 0; i < indices.length; i++) {
+    parent.childNodes
+      .item(indices[i])
+      .appendChild(document.createTextNode(letter));
+  }
+};
 
 /**
  * 
- * @param {string} letter 
- * @param {array} indices 
+ * @param {string} guessedLetter 
  */
-let populateGuessedLetter = (letter, indices) => {
-    let parent = document.getElementById('letter-box-wrapper');
-    for (let i = 0; i < indices.length; i++) {
-        parent.childNodes.item(indices[i]).appendChild(document.createTextNode(letter));
-    }
-};
-
-
+let guessedLetterPop = (guessedLetter) => {
+  lettersGuessed.push(guessedLetter);
+  let letterWrapper = document.createElement("div");
+  letterWrapper.appendChild(document.createTextNode(guessedLetter));
+  guessedLettersEl.appendChild(letterWrapper);
+}
 /**
  * Given a min and max get a whole number (integer) between them.
  * @param min
@@ -211,4 +227,37 @@ let getRandomInt = (min, max) => {
   );
 };
 
+let handleStrike = () => {
+  strikeCountEl.innerText = --strikesLeft;
+
+  switch (strikesLeft) {
+    case 5:
+      document.getElementById("head").classList.add("strike");
+      break;
+    case 4:
+      document.getElementById("chest").classList.add("strike");
+      break;
+    case 3:
+      document.getElementById("left-arm").classList.add("strike");
+      document.getElementById("right-arm").classList.add("strike");
+      break;
+    case 2:
+      document.getElementById("left-leg").classList.add("strike");
+      break;
+    case 1:
+        document.getElementById("right-leg").classList.add("strike");
+      break;
+    case 0:
+      document.getElementById("left-foot").classList.add("strike");
+      document.getElementById("right-foot").classList.add("strike");
+      handleGameOver();
+      break;
+  }
+}
+
+let handleGameOver = () => {
+  console.log('You Lost');
+}
+
 groupRandomWordsByLength(randomWordList);
+getRandomWord("medium");
