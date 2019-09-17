@@ -1,142 +1,180 @@
 * {
-    box-sizing: border-box;
-  }
-  
+  box-sizing: border-box;
+}
 
 
-  .container {
-      width: 960px;
-      margin: 0 auto;
-  }
 
-  .block {
-    margin: 30px auto;
-  }
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
 
-
-  #page-title {
-      text-align: center;
-  }
-  
-  .stick-figure-wrapper {
-    width: 300px;
-    height: 300px;
-    display: block;
-    position: relative;
-  }
-  
-  #head {
-    width: 50px;
-    height: 60px;
-    border: 5px solid black;
-    border-radius: 50%;
-    display: block;
-    position: absolute;
-    top: 21px;
-    left: 133px;
-    z-index: 1;
-  }
-  
-
-  #chest {
-    width: 6px;
-    height: 100px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 80px;
-    left: 156px;
-  }
-  
-  #left-leg {
-    width: 6px;
-    height: 100px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 175px;
-    left: 155px;
-    transform: rotate(12deg);
-    transform-origin: top;
-  }
-  
-  #right-leg {
-    width: 6px;
-    height: 100px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 175px;
-    left: 157px;
-    transform: rotate(-12deg);
-    transform-origin: top;
-  }
-  
-  #left-arm {
-    width: 100px;
-    height: 6px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 86px;
-    left: 57px;
-  }
-  
-
-  
-  #right-arm {
-    width: 100px;
-    height: 6px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 86px;
-    left: 161px;
-  }
-  
-  
-  #left-foot {
-    width: 30px;
-    height: 6px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 270px;
-    left: 110px;
-    transform: rotate(8deg);
-  }
-  
-  #right-foot {
-    width: 30px;
-    height: 6px;
-    border: 3px solid black;
-    display: block;
-    position: absolute;
-    top: 270px;
-    left: 178px;
-    transform: rotate(-8deg);
-  }
+.block {
+  margin: 30px auto;
+}
 
 
-  .buttons-wrapper {
+#page-title {
     text-align: center;
-  }
+}
+
+.stick-figure-wrapper {
+  height: 700px;
+  display: block;
+  position: relative;
+}
+
+.hangman-body {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+  top: 225px;
+  left: -25px;
+}
+
+
+#gallows {
+  height: 600px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+}
+
+.body-part {
+  visibility: hidden;
+}
+
+#head {
+  width: 50px;
+  height: 60px;
+  border: 5px solid black;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 21px;
+  left: 133px;
+  z-index: 1;
+}
+
+
+#chest {
+  width: 6px;
+  height: 100px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 80px;
+  left: 156px;
+}
+
+#left-leg {
+  width: 6px;
+  height: 100px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 175px;
+  left: 155px;
+  transform: rotate(12deg);
+  transform-origin: top;
+}
+
+#right-leg {
+  width: 6px;
+  height: 100px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 175px;
+  left: 157px;
+  transform: rotate(-12deg);
+  transform-origin: top;
+}
+
+#left-arm {
+  width: 100px;
+  height: 6px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 86px;
+  left: 57px;
+}
+
+
+
+#right-arm {
+  width: 100px;
+  height: 6px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 86px;
+  left: 161px;
+}
+
+
+#left-foot {
+  width: 30px;
+  height: 6px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 270px;
+  left: 110px;
+  transform: rotate(8deg);
+}
+
+#right-foot {
+  width: 30px;
+  height: 6px;
+  border: 3px solid black;
+  display: block;
+  position: absolute;
+  top: 270px;
+  left: 178px;
+  transform: rotate(-8deg);
+}
+
+
+.buttons-wrapper {
+  text-align: center;
+}
 
 
 
 
-  #letter-guess-wrapper, .letter-box-wrapper {
-    text-align: center;
-    height: 60px;
-  }
+#letter-guess-wrapper, .letter-box-wrapper {
+  text-align: center;
+  height: 60px;
+}
 
-  .letter-box {
-    border-bottom: 3px solid black;
-    width: 30px;
-    height: 30px;
-    margin: 15px;
-    display: inline-block;
-    vertical-align: bottom;
-    text-align: center;
-    text-transform: uppercase;
-  }
+.letter-box {
+  border-bottom: 3px solid black;
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#take-a-guess {
+  text-align: center;
+}
+
+#take-a-guess input, #take-a-guess label {
+  display: block;
+  margin: 0 auto;
+}
+
+
+.strike-wrapper {
+  text-align: center;
+}

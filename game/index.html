@@ -12,23 +12,24 @@
 </head>
 
 <body>
-
     <div class="page">
-
         <div class="container">
             <h1 id="page-title" class="block">This is Hang Man</h1>
             <div class="stick-figure-wrapper block">
-                <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
-                <div id="chest" class="body-part"></div>
-                <div id="left-arm" class="body-part"></div>
-                <div id="right-arm" class="body-part"></div>
-                <div id="left-leg" class="body-part"></div>
-                <div id="left-foot" class="body-part"></div>
-                <div id="right-leg" class="body-part"></div>
-                <div id="right-foot" class="body-part"></div>
+                <img id="gallows" src="gallows.png" alt="The Gallows">
+
+                <div class="hangman-body">
+                    <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
+                    <div id="chest" class="body-part"></div>
+                    <div id="left-arm" class="body-part"></div>
+                    <div id="right-arm" class="body-part"></div>
+                    <div id="left-leg" class="body-part"></div>
+                    <div id="left-foot" class="body-part"></div>
+                    <div id="right-leg" class="body-part"></div>
+                    <div id="right-foot" class="body-part"></div>
+                </div>
             </div>
         </div>
-
 
         <div id="letter-guess-wrapper" class="container"></div>
 
@@ -38,16 +39,16 @@
                 <button onclick="getRandomWord('medium')">Medium Word</button>
                 <button onclick="getRandomWord('long')">Long Word</button>
             </div>
-            <form id="take-a-guess" onsubmit="takeAGuess(this); return false;">
-                <input name="hangman-guess" type="text">
+            <form id="take-a-guess">
+                <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text">
+                <label for="hangman-guess">Guess either a letter or the full word.</label>
+                <!-- <input id="word-to-guess" type="hidden" name="word-to-guess" value=''> -->
+                <small>Guessing more than 1 letter counts as guessing the full word.  <br>You can only guess the full word once.</small>
             </form>
+
+            <h3 class="strike-wrapper">Strikes Left <span id="strikes-left"></span></h4>
         </div>
-
-
     </div>
-
-
-
 
     <script src="game.js"></script>
 </body>
