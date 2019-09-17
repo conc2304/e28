@@ -9,9 +9,12 @@
       margin: 0 auto;
   }
 
+  .block {
+    margin: 30px auto;
+  }
+
 
   #page-title {
-      margin: 0 auto;
       text-align: center;
   }
   
@@ -20,7 +23,6 @@
     height: 300px;
     display: block;
     position: relative;
-    margin: 30px auto;
   }
   
   #head {
@@ -113,4 +115,28 @@
     top: 270px;
     left: 178px;
     transform: rotate(-8deg);
+  }
+
+
+  .buttons-wrapper {
+    text-align: center;
+  }
+
+
+
+
+  #letter-guess-wrapper, .letter-box-wrapper {
+    text-align: center;
+    height: 60px;
+  }
+
+  .letter-box {
+    border-bottom: 3px solid black;
+    width: 30px;
+    height: 30px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    text-transform: uppercase;
   }

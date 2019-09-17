@@ -14,25 +14,37 @@
 <body>
 
     <div class="page">
+
         <div class="container">
-
-            <h1 id="page-title">This is Hang Man</h1>
-
-            <div class="stick-figure-wrapper">
-                <img id="head"  class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
-                <div id="chest" class="body-part" ></div>
-                <div id="left-arm" class="body-part" ></div>
-                <div id="right-arm" class="body-part" ></div>
-                <div id="left-leg" class="body-part" ></div>
-                <div id="left-foot" class="body-part" ></div>
-                <div id="right-leg" class="body-part" ></div>
-                <div id="right-foot" class="body-part" ></div>
+            <h1 id="page-title" class="block">This is Hang Man</h1>
+            <div class="stick-figure-wrapper block">
+                <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
+                <div id="chest" class="body-part"></div>
+                <div id="left-arm" class="body-part"></div>
+                <div id="right-arm" class="body-part"></div>
+                <div id="left-leg" class="body-part"></div>
+                <div id="left-foot" class="body-part"></div>
+                <div id="right-leg" class="body-part"></div>
+                <div id="right-foot" class="body-part"></div>
             </div>
-
         </div>
+
+
+        <div id="letter-guess-wrapper" class="container"></div>
+
+        <div class="container">
+            <div class="buttons-wrapper block">
+                <button onclick="getRandomWord('short')">Short Word</button>
+                <button onclick="getRandomWord('medium')">Medium Word</button>
+                <button onclick="getRandomWord('long')">Long Word</button>
+            </div>
+            <form id="take-a-guess" onsubmit="takeAGuess(this); return false;">
+                <input name="hangman-guess" type="text">
+            </form>
+        </div>
+
+
     </div>
-
-
 
 
 
