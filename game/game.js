@@ -282,6 +282,10 @@ let handleStrike = () => {
     }
 }
 
+/**
+ * Check to see if all the letters of the word have been guessed.
+ * @param {string} wordToGuess 
+ */
 let validateWordCompletion = wordToGuess => {
 
     let children = guessBoxWrapperEl.children;
@@ -297,6 +301,10 @@ let validateWordCompletion = wordToGuess => {
     return guessedStr.toUpperCase === wordToGuess.toUpperCase
 }
 
+/**
+ * Display the restart game message based on successfull completion of the game;
+ * @param {string} status 
+ */
 let handleGameOver = (status) => {
 
     let msg;
@@ -312,7 +320,7 @@ let handleGameOver = (status) => {
 }
 
 
-
+// Initialize the view
 (() => {
     groupRandomWordsByLength(randomWordList);
     getRandomWord("medium");
