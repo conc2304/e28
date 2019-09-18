@@ -168,6 +168,13 @@ let handleGuess = guess => {
         if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
             handleGameOver('success');
 
+            let children = guessBoxWrapperEl.children;
+            let array = [...children];
+        
+            for (let i = 0; i < array.length; i++) {
+                array[i].textContent = wordToGuess.charAt(i);
+            }
+
             console.log("Winner Winner Chicken Dinner!");
         } else {
             handleGameOver('fail');
