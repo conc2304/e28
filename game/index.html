@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A Game of Hangman</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="game.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page">
+        <div class="container">
+            <h1 id="page-title" class="block">This is Hang Man</h1>
+            <div class="stick-figure-wrapper block">
+                <img id="gallows" src="https://www.wpclipart.com/world_history/punishment/gallows_lineart.png" alt="The Gallows">
+                <!-- <img id="gallows" src="gallows.png" alt="The Gallows"> -->
+
+                <div class="hangman-body">
+                    <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
+                    <div id="chest" class="body-part"></div>
+                    <div id="left-arm" class="body-part"></div>
+                    <div id="right-arm" class="body-part"></div>
+                    <div id="left-leg" class="body-part"></div>
+                    <div id="left-foot" class="body-part"></div>
+                    <div id="right-leg" class="body-part"></div>
+                    <div id="right-foot" class="body-part"></div>
+                </div>
+            </div>
+
+            <div id="letters-to-guess-wrapper" class="container"></div>
+
+            <h3>Guessed Letters</h3>
+            <div id="guessed-letters-wrapper"></div>
+
+            <h3 class="strike-wrapper">Strikes Left <span id="strikes-left"></span></h3>
+
+            <form id="take-a-guess">
+                <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" />
+                <label for="hangman-guess">Guess either a letter or the full word.</label>
+                <!-- <input id="word-to-guess" type="hidden" name="word-to-guess" value=''> -->
+                <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
+                    word once.</small>
+            </form>
+
+
+            <div id="restart-wrapper">
+                <h2 id="game-end-msg"></h2>
+                <h3>Start over with a new word</h3>
+                <button id="get-short-word">Short Word</button>
+                <button id="get-medium-word">Medium Word</button>
+                <button id="get-long-word">Long Word</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
