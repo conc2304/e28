@@ -19,7 +19,7 @@
 }
 
 .stick-figure-wrapper {
-  height: 700px;
+  /* height: 700px; */
   display: block;
   position: relative;
 }
@@ -29,13 +29,13 @@
   height: 300px;
   position: relative;
   margin: 0 auto;
-  top: 225px;
+  top: 85px;
   left: -25px;
 }
 
 
 #gallows {
-  height: 600px;
+  height: 300px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -68,7 +68,7 @@
 
 #chest {
   width: 6px;
-  height: 100px;
+  height: 50px;
   border: 3px solid black;
   display: block;
   position: absolute;
@@ -78,42 +78,43 @@
 
 #left-leg {
   width: 6px;
-  height: 100px;
+  height: 50px;
   border: 3px solid black;
   display: block;
   position: absolute;
-  top: 175px;
+  top: 125px;
   left: 155px;
   transform: rotate(12deg);
   transform-origin: top;
 }
 
+
 #right-leg {
   width: 6px;
-  height: 100px;
+  height: 50px;
   border: 3px solid black;
   display: block;
   position: absolute;
-  top: 175px;
-  left: 157px;
+  top: 125px;
+  left: 155px;
   transform: rotate(-12deg);
   transform-origin: top;
 }
 
 #left-arm {
-  width: 100px;
+  width: 60px;
   height: 6px;
   border: 3px solid black;
   display: block;
   position: absolute;
   top: 86px;
-  left: 57px;
+  left: 97px;
 }
 
 
 
 #right-arm {
-  width: 100px;
+  width: 60px;
   height: 6px;
   border: 3px solid black;
   display: block;
@@ -124,33 +125,32 @@
 
 
 #left-foot {
-  width: 30px;
+  width: 20px;
   height: 6px;
   border: 3px solid black;
   display: block;
   position: absolute;
-  top: 270px;
-  left: 110px;
+  top: 170px;
+  left: 130px;
   transform: rotate(8deg);
 }
 
 #right-foot {
-  width: 30px;
+  width: 20px;
   height: 6px;
   border: 3px solid black;
   display: block;
   position: absolute;
-  top: 270px;
-  left: 178px;
+  top: 170px;
+  left: 165px;
   transform: rotate(-8deg);
 }
 
 
-.buttons-wrapper {
+#restart-wrapper {
+  visibility: hidden;
   text-align: center;
 }
-
-
 
 
 #letters-to-guess-wrapper, .letter-box-wrapper {

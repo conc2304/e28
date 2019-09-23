@@ -16,7 +16,8 @@
         <div class="container">
             <h1 id="page-title" class="block">This is Hang Man</h1>
             <div class="stick-figure-wrapper block">
-                <img id="gallows" src="gallows.png" alt="The Gallows">
+                <img id="gallows" src="https://www.wpclipart.com/world_history/punishment/gallows_lineart.png" alt="The Gallows">
+                <!-- <img id="gallows" src="gallows.png" alt="The Gallows"> -->
 
                 <div class="hangman-body">
                     <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png">
@@ -46,12 +47,12 @@
             </form>
 
 
-            <div class="buttons-wrapper block">
-
+            <div id="restart-wrapper">
+                <h2 id="game-end-msg"></h2>
                 <h3>Start over with a new word</h3>
-                <button onclick="getRandomWord('short')">Short Word</button>
-                <button onclick="getRandomWord('medium')">Medium Word</button>
-                <button onclick="getRandomWord('long')">Long Word</button>
+                <button id="get-short-word">Short Word</button>
+                <button id="get-medium-word">Medium Word</button>
+                <button id="get-long-word">Long Word</button>
             </div>
         </div>
 
