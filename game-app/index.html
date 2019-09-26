@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A Game of Hangman V1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="game-app.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+</head>
+
+<body>
+    <div id='app' v-cloak>
+
+
+        <div class="page">
+            <div class="container">
+                <h1 id="page-title" class="block">This is Hang Man</h1>
+                <div class="stick-figure-wrapper block">
+                    <img id="gallows" src="https://www.wpclipart.com/world_history/punishment/gallows_lineart.png" alt="The Gallows">
+    
+                    <div class="hangman-body">
+                        <img id="head" class="body-part" src="https://pngimg.com/uploads/trollface/trollface_PNG38.png"
+                            v-bind:class="{ strike: strikesLeft <= 5}">
+                        <div id="chest" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 4 }"></div>
+                        <div id="left-arm" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 3 }"></div>
+                        <div id="right-arm" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 3 }"></div>
+                        <div id="left-leg" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 2 }"></div>
+                        <div id="right-leg" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 1 }"></div>
+                        <div id="left-foot" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 0 }"></div>
+                        <div id="right-foot" class="body-part" 
+                            v-bind:class="{ strike: strikesLeft <= 0 }"></div>
+                    </div>
+                </div>
+    
+                <div id="letters-to-guess-wrapper" class="container">
+                    <div v-for="l in wordToGuess.length" class="letter-box"></div>
+                </div>
+    
+                <h3>Guessed Letters</h3>
+                <div id="guessed-letters-wrapper">
+                    <div v-for="guess in guesses" class="'test'">{{ guess }}</div>
+                </div>
+    
+                <h3 class="strike-wrapper">Strikes Left {{ strikesLeft}}</h3>
+    
+                <form id="take-a-guess">
+                    <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" />
+                    <label for="hangman-guess">Guess either a letter or the full word.</label>
+                    <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
+                        word once.</small>
+                </form>
+    
+    
+                <div id="restart-wrapper">
+                    <h2 id="game-end-msg"></h2>
+                    <h3>Start over with a new word</h3>
+                    <button id="get-short-word">Short Word</button>
+                    <button id="get-medium-word">Medium Word</button>
+                    <button id="get-long-word">Long Word</button>
+                </div>
+            </div>
+    
+        </div>
+
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

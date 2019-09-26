@@ -1,0 +1,198 @@
+[v-cloak] {
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  
+  
+  .container {
+      width: 960px;
+      margin: 0 auto;
+  }
+  
+  .block {
+    margin: 30px auto;
+  }
+  
+  
+  #page-title {
+      text-align: center;
+  }
+  
+  .stick-figure-wrapper {
+    /* height: 700px; */
+    display: block;
+    position: relative;
+  }
+  
+  .hangman-body {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: 0 auto;
+    top: 85px;
+    left: -25px;
+  }
+  
+  
+  #gallows {
+    height: 300px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  
+  }
+  
+  .body-part {
+    visibility: hidden;
+  }
+  
+  .body-part.strike {
+    visibility: visible;
+  }
+  
+  #head {
+    width: 50px;
+    height: 60px;
+    border: 5px solid black;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 21px;
+    left: 133px;
+    z-index: 1;
+  }
+  
+  
+  #chest {
+    width: 6px;
+    height: 50px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: 156px;
+  }
+  
+  #left-leg {
+    width: 6px;
+    height: 50px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 155px;
+    transform: rotate(12deg);
+    transform-origin: top;
+  }
+  
+  
+  #right-leg {
+    width: 6px;
+    height: 50px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 155px;
+    transform: rotate(-12deg);
+    transform-origin: top;
+  }
+  
+  #left-arm {
+    width: 60px;
+    height: 6px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 86px;
+    left: 97px;
+  }
+  
+  
+  
+  #right-arm {
+    width: 60px;
+    height: 6px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 86px;
+    left: 161px;
+  }
+  
+  
+  #left-foot {
+    width: 20px;
+    height: 6px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 170px;
+    left: 130px;
+    transform: rotate(8deg);
+  }
+  
+  #right-foot {
+    width: 20px;
+    height: 6px;
+    border: 3px solid black;
+    display: block;
+    position: absolute;
+    top: 170px;
+    left: 165px;
+    transform: rotate(-8deg);
+  }
+  
+  
+  #restart-wrapper {
+    visibility: hidden;
+    text-align: center;
+  }
+  
+  
+  #letters-to-guess-wrapper, .letter-box-wrapper {
+    text-align: center;
+    height: 60px;
+  }
+  
+  .letter-box {
+    border-bottom: 3px solid black;
+    width: 30px;
+    height: 30px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  #take-a-guess {
+    text-align: center;
+  }
+  
+  #take-a-guess input, #take-a-guess label {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  
+  .strike-wrapper {
+    text-align: center;
+  }
+  
+  
+  #guessed-letters-wrapper {
+    height: 50px;
+  }
+  #guessed-letters-wrapper div{
+    display: inline-block;
+    margin: 15px;
+    text-transform: capitalize;
+  }
