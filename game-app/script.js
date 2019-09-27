@@ -92,6 +92,7 @@
 
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
     wordToGuess = hangmanWords[wordLength][randomInt];
+    wordToGuessArr = wordToGuess.split();
     strikesLeft = resetStrikeVal;
   };
 
@@ -253,12 +254,14 @@
     el: "#app",
     data: {
       wordToGuess: wordToGuess,
+      wordToGuessArr: [],
       playerName: null,
       guessedWord: null,
       restartModalVisible:  true,
       guesses: [],
       strikesLeft: 6,
       gameOverMsg: ''
+      
     },
     methods: {
       getRandomWord,
