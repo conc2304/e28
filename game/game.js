@@ -298,11 +298,7 @@ let validateWordCompletion = wordToGuess => {
         guessedStr += key.textContent;
     }
 
-<<<<<<< HEAD
-    return guessedStr.toUpperCase === wordToGuess.toUpperCase
-=======
     return guessedStr.toUpperCase() === wordToGuess.toUpperCase();
->>>>>>> 90c303582d4d5712ee52a5731a77eed8bd7909fb
 }
 
 /**
