@@ -44,7 +44,7 @@
                     <div v-for="guess in guesses" class="'test'">{{ guess }}</div>
                 </div>
 
-                <h3 class="strike-wrapper">Strikes Left {{ strikesLeft}}</h3>
+                <h3 class="strike-wrapper">Strikes Left {{ strikesLeft  }}</h3>
 
                 <form id="take-a-guess">
                     <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" />
@@ -54,12 +54,12 @@
                 </form>
 
 
-                <div v-if="restartModalVisible" id="restart-wrapper" >
-                    <h2 id="game-end-msg"></h2>
+                <div v-show="restartModalVisible" id="restart-wrapper" >
+                    <h2 id="game-end-msg">{{ gameOverMsg }} </h2>
                     <h3>Start over with a new word</h3>
-                    <button id="get-short-word">Short Word</button>
-                    <button id="get-medium-word">Medium Word</button>
-                    <button id="get-long-word">Long Word</button>
+                    <button v-on:click="getRandomWord('short')">Short Word</button>
+                    <button v-on:click="getRandomWord('medium')">Medium Word</button>
+                    <button v-on:click="getRandomWord('long')">Long Word</button>
                 </div>
             </div>
 

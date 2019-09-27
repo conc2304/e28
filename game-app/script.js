@@ -1,6 +1,6 @@
 (function () {
 
-  let wordToGuess = "Banana";
+  let wordToGuess = "";
   const availableWordLengths = ["short", "medium", "long"];
   let hangmanWords = {
     short: [],
@@ -93,31 +93,8 @@
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
     wordToGuess = hangmanWords[wordLength][randomInt];
     strikesLeft = resetStrikeVal;
-
-    // while (guessBoxWrapperEl.firstChild) {
-    //   guessBoxWrapperEl.firstChild.remove();
-    // }
-
-    // while (guessedLettersEl.firstChild) {
-    //   guessedLettersEl.firstChild.remove();
-    // }
-
-    // buildGuessingBoxes(wordToGuess);
   };
 
-  // /**
-  // * Create the DOM elements to represent the letters to be guessed for the given word.
-  // * @param {string} wordToGuess
-  // */
-  // let buildGuessingBoxes = wordToGuess => {
-  //   let i = 0;
-  //   while (i < wordToGuess.length) {
-  //     letterBox = document.createElement("div");
-  //     letterBox.classList.add("letter-box");
-  //     guessBoxWrapperEl.appendChild(letterBox);
-  //     i++;
-  //   }
-  // };
 
   /**
   * Submit handler for making a guess.  Updates the strike count, updates the letters guessed, and those guessed correctly.
@@ -263,8 +240,8 @@
       msg = "Welp, that sucked, better luck next time pal ¯\_(ツ)_/¯";
     }
 
-    document.getElementById("game-end-msg").textContent = msg;
-    restartModal.style.visibility = 'visible';
+    gameOverMsg = msg;
+    restartModalVisible = true;
   }
 
 
@@ -279,12 +256,14 @@
       playerName: null,
       guessedWord: null,
       restartModalVisible:  true,
-      guesses: ["a", "b", "c"],
-      strikesLeft: 6
+      guesses: [],
+      strikesLeft: 6,
+      gameOverMsg: ''
     },
     methods: {
       getRandomWord,
-      handleGuess
+      handleGuess,
+      getRandomWord
     }
   });
   
