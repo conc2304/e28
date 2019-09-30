@@ -36,18 +36,19 @@
                 </div>
 
                 <div id="letters-to-guess-wrapper" class="container">
-                    <div v-for="l in wordToGuess.length" class="letter-box"></div>
+                    <div v-for="letter in wordToGuessArr" class="letter-box">{{ letter }}</div>
                 </div>
 
                 <h3>Guessed Letters</h3>
                 <div id="guessed-letters-wrapper">
-                    <div v-for="guess in guesses" class="'test'">{{ guess }}</div>
+                    <div v-for="guess in lettersGuessed" class="'test'">{{ guess }}</div>
                 </div>
 
                 <h3 class="strike-wrapper">Strikes Left {{ strikesLeft  }}</h3>
 
-                <form id="take-a-guess">
-                    <input id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" />
+                <form @submit="handleGuess" id="take-a-guess">
+                    <!-- <input v-on:input="handleGuess" v-model="guess" id="hangman-guess" name="hangman-guess" placeholder="Guess" type="text" /> -->
+                    <input  autocomplete="off" v-model="guess" value="guess" id="hangman-guess" name="hangman-guess" placeholder="Guess" :disabled="strikesLeft === 0" type="text" />
                     <label for="hangman-guess">Guess either a letter or the full word.</label>
                     <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
                         word once.</small>

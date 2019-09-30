@@ -1,6 +1,6 @@
 (function () {
 
-  let wordToGuess = "";
+
   const availableWordLengths = ["short", "medium", "long"];
   let hangmanWords = {
     short: [],
@@ -91,9 +91,15 @@
     }
 
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
-    wordToGuess = hangmanWords[wordLength][randomInt];
-    wordToGuessArr = wordToGuess.split();
-    strikesLeft = resetStrikeVal;
+    vm.wordToGuess = hangmanWords[wordLength][randomInt];
+    vm.wordToGuessArr = [];
+    vm.lettersGuessed = [];
+    vm.restartModalVisible = false;
+
+    for (let i = 0; i < vm.wordToGuess.length; i++) {
+      vm.wordToGuessArr.push('');
+    }
+    vm.strikesLeft = resetStrikeVal;
   };
 
 
@@ -101,46 +107,45 @@
   * Submit handler for making a guess.  Updates the strike count, updates the letters guessed, and those guessed correctly.
   * @param {string} guess
   */
-  let handleGuess = guess => {
+  let handleGuess = event => {
 
-    guessInputEl.value = '';
+    event.preventDefault();
 
-    if (lettersGuessed.includes(guess)) {
+    if (vm.lettersGuessed.includes(vm.guess)) {
       return;
     }
 
-    if (guess.length > 1) {
-      if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
+    if (vm.guess.length > 1) {
+      if (vm.guess.toLowerCase() === vm.wordToGuess.toLowerCase()) {
         handleGameOver('success');
 
-        let children = guessBoxWrapperEl.children;
-        let array = [...children];
-
-        for (let i = 0; i < array.length; i++) {
-          array[i].textContent = wordToGuess.charAt(i);
+        for (let i = 0; i < vm.wordToGuessArr; i++) {
+          vm.wordToGuessArr[i] = vm.wordToGuess.charAt(i);
         }
 
         console.log("Winner Winner Chicken Dinner!");
       } else {
         handleGameOver('fail');
         console.log("Loser Loser Booger Chooser!");
-        strikeCountEl.innerText = 0;
+        vm.strikesLeft = 0;
       }
-    } else if (guess.length === 1) {
+    } else if (vm.guess.length === 1) {
 
-      let indicesOfGuess = getGuessIndexes(guess, wordToGuess);
+      let indicesOfGuess = getGuessIndexes(vm.guess, vm.wordToGuess);
       if (indicesOfGuess.length === 0) {
         handleStrike();
       } else {
-        populateGuessedLetter(guess, indicesOfGuess);
+        populateCorrectlyGuessedLetter(vm.guess, indicesOfGuess);
       }
-      guessedLetterPop(guess);
-      if (validateWordCompletion(wordToGuess)) {
+      guessedLetterPop(vm.guess);
+      if (validateWordCompletion(vm.wordToGuess)) {
         handleGameOver('success');
       }
     } else {
       console.log("wrong");
     }
+    
+    vm.guess = '';
   };
 
   /**
@@ -164,12 +169,9 @@
   * @param {string} letter
   * @param {array} indices
   */
-  let populateGuessedLetter = (letter, indices) => {
-    let parent = guessBoxWrapperEl;
-    for (let i = 0; i < indices.length; i++) {
-      parent.childNodes
-        .item(indices[i])
-        .appendChild(document.createTextNode(letter));
+  let populateCorrectlyGuessedLetter = (letter, indices) => {
+    for (let index of indices) {
+      vm.wordToGuessArr[index] = letter;
     }
   };
 
@@ -178,10 +180,7 @@
   * @param {string} guessedLetter 
   */
   let guessedLetterPop = (guessedLetter) => {
-    lettersGuessed.push(guessedLetter);
-    let letterWrapper = document.createElement("div");
-    letterWrapper.appendChild(document.createTextNode(guessedLetter));
-    guessedLettersEl.appendChild(letterWrapper);
+    vm.lettersGuessed.push(guessedLetter);
   }
   /**
   * Given a min and max get a whole number (integer) between them.
@@ -200,11 +199,9 @@
   * Display parts of the 'hang man' based on number of stikes left. Call the game-over handler on 0 strikes.
   */
   let handleStrike = () => {
-    strikeCountEl.innerText = --strikesLeft;
-
+    --vm.strikesLeft;
     if (vm.strikesLeft === 0) {
       handleGameOver('fail');
-
     }
   };
 
@@ -214,14 +211,11 @@
   */
   let validateWordCompletion = wordToGuess => {
 
-    let children = guessBoxWrapperEl.children;
-    let array = [...children];
+
 
     let guessedStr = '';
-    for (let key of array) {
-      let test = key.textContent;
-
-      guessedStr += key.textContent;
+    for (let letter of vm.wordToGuessArr) {
+      guessedStr += letter;
     }
 
     return guessedStr.toUpperCase() === wordToGuess.toUpperCase();
@@ -238,36 +232,39 @@
     if (status === 'success') {
       msg = "Congratulations You Won! Go on keep playing you know this is a blast!"
     } else {
-      msg = "Welp, that sucked, better luck next time pal ¯\_(ツ)_/¯";
+      msg = "Welp, that sucked, better luck next time pal ¯\\_(ツ)_/¯";
     }
 
-    gameOverMsg = msg;
-    restartModalVisible = true;
+    vm.gameOverMsg = msg;
+    vm.restartModalVisible = true;
   }
 
 
-  // Initialize the view
-  groupRandomWordsByLength(randomWordList);
-  getRandomWord("medium");
 
-  let app = new Vue({
+  let data = {
+    wordToGuess: '',
+    wordToGuessArr: [],
+    playerName: null,
+    guessedWord: null,
+    restartModalVisible:  true,
+    lettersGuessed: [],
+    strikesLeft: 6,
+    gameOverMsg: '',
+    guess: null,
+    gameOverMsg : '',
+    restartModalVisible : false,
+  }
+
+  let vm = new Vue({
     el: "#app",
-    data: {
-      wordToGuess: wordToGuess,
-      wordToGuessArr: [],
-      playerName: null,
-      guessedWord: null,
-      restartModalVisible:  true,
-      guesses: [],
-      strikesLeft: 6,
-      gameOverMsg: ''
-      
-    },
+    data: data,
     methods: {
       getRandomWord,
       handleGuess,
-      getRandomWord
-    }
+    }, 
   });
+
+  groupRandomWordsByLength(randomWordList);
+  getRandomWord("medium");
   
 })();
