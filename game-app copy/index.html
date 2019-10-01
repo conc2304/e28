@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A Game of Hangman V1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="game-app.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+</head>
+
+<body>
+    <div id='app' v-cloak>
+
+
+        <div class="page">
+            <div class="container">
+                <h1 id="page-title" class="block">This is Hang Man</h1>
+
+                <hang-man-gallows :strikes-left="strikesLeft"/></hang-man-gallows>
+                <letters-to-guess :word-to-guess-arr="wordToGuessArr"></letters-to-guess>            
+                <guessed-letters-wrapper :letters-guessed="lettersGuessed"></guessed-letters-wrapper>
+                <strikes-left-counter :strikes-left="strikesLeft"></strikes-left-counter>
+                <guess-form :guess="guess" :strikes-left="strikesLeft"></guess-form>
+                
+                <form @submit="handleGuess" id="take-a-guess">
+                    <input  autocomplete="off" v-model="guess" value="guess" id="hangman-guess" name="hangman-guess" placeholder="Guess" :disabled="strikesLeft === 0" type="text" />
+                    <label for="hangman-guess">Guess either a letter or the full word.</label>
+                    <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
+                        word once.</small>
+                </form>
+                
+
+                <div v-show="restartModalVisible" id="restart-wrapper" >
+                    <h2 id="game-end-msg">{{ gameOverMsg }} </h2>
+                    <h3>Start over with a new word</h3>
+                    <button v-on:click="getRandomWord('short')">Short Word</button>
+                    <button v-on:click="getRandomWord('medium')">Medium Word</button>
+                    <button v-on:click="getRandomWord('long')">Long Word</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
