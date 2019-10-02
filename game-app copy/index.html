@@ -22,19 +22,27 @@
             <guessed-letters-wrapper :letters-guessed="lettersGuessed"></guessed-letters-wrapper>
             <strikes-left-counter :strikes-left="strikesLeft"></strikes-left-counter>
 
-
             <guess-form 
                 :strikes-left="strikesLeft"
-                
+                :word-to-guess="wordToGuess"
+                :letters-guessed="lettersGuessed"
+                :word-to-guess-arr="wordToGuessArr"
+                :strikes-left="strikesLeft"
                 >
             </guess-form>
             <restart-wrapper 
                 :display-modal="restartModalVisible" 
                 :game-over-msg="gameOverMsg"
-                v-on:update_word="restartGame">
+                v-on:guess_made="restartGame">
             </restart-wrapper>
         </div>
     </div>
+    <script src="components/guessed-letters.js" defer></script>
+    <script src="components/hangman-gallows.js" defer></script>
+    <script src="components/letters-to-guess.js" defer></script>
+    <script src="components/restart-game.js" defer></script>
+    <script src="components/strikes-left-counter.js" defer></script>
+    <script src="components/word-guess-form.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 
