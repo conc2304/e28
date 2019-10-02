@@ -260,8 +260,8 @@
     data: data,
     methods: {
       getRandomWord,
-      handleGuess,
-    }, 
+      // handleGuess,
+    },
   });
 
   groupRandomWordsByLength(randomWordList);

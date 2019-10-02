@@ -85,38 +85,33 @@
   * Get a random word from the group of random words with the corresponding length
   * @param {string} wordLength
   */
-  let getRandomWord = wordLength => {
+  function getRandomWord(wordLength) {
     if (!availableWordLengths.includes(wordLength)) {
       wordLength = "medium";
     }
 
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
-    vm.wordToGuess = hangmanWords[wordLength][randomInt];
-    vm.wordToGuessArr = [];
-    vm.lettersGuessed = [];
-    vm.restartModalVisible = false;
-
-    for (let i = 0; i < vm.wordToGuess.length; i++) {
-      vm.wordToGuessArr.push('');
-    }
-    vm.strikesLeft = resetStrikeVal;
+    let wordToGuess = hangmanWords[wordLength][randomInt];
+    console.log(wordLength);
+    console.log(wordToGuess);
+    this.$emit('update_word', wordToGuess);
   };
 
 
   /**
   * Submit handler for making a guess.  Updates the strike count, updates the letters guessed, and those guessed correctly.
-  * @param {string} guess
+  * @param {*} guess 
   */
-  let handleGuess = event => {
+  let handleGuess = (guess) => {
 
-    event.preventDefault();
+    // event.preventDefault();
 
-    if (vm.lettersGuessed.includes(vm.guess)) {
+    if (vm.lettersGuessed.includes(guess)) {
       return;
     }
 
     if (vm.guess.length > 1) {
-      if (vm.guess.toLowerCase() === vm.wordToGuess.toLowerCase()) {
+      if (guess.toLowerCase() === vm.wordToGuess.toLowerCase()) {
         handleGameOver('success');
 
         for (let i = 0; i < vm.wordToGuessArr; i++) {
@@ -129,15 +124,15 @@
         console.log("Loser Loser Booger Chooser!");
         vm.strikesLeft = 0;
       }
-    } else if (vm.guess.length === 1) {
+    } else if (guess.length === 1) {
 
-      let indicesOfGuess = getGuessIndexes(vm.guess, vm.wordToGuess);
+      let indicesOfGuess = getGuessIndexes(guess, vm.wordToGuess);
       if (indicesOfGuess.length === 0) {
         handleStrike();
       } else {
-        populateCorrectlyGuessedLetter(vm.guess, indicesOfGuess);
+        populateCorrectlyGuessedLetter(guess, indicesOfGuess);
       }
-      guessedLetterPop(vm.guess);
+      guessedLetterPop(guess);
       if (validateWordCompletion(vm.wordToGuess)) {
         handleGameOver('success');
       }
@@ -211,8 +206,6 @@
   */
   let validateWordCompletion = wordToGuess => {
 
-
-
     let guessedStr = '';
     for (let letter of vm.wordToGuessArr) {
       guessedStr += letter;
@@ -240,7 +233,6 @@
   }
 
 
-  // Vue.component('HangManGallows', {
   let HangManGallows = {
     props: {
       strikesLeft: {
@@ -297,23 +289,55 @@
 
   let GuessForm = {
     props: {
-      guess: {
-        type: String
-      },
-      strikesLeft: {
-        type: Number,
-      },
+      strikesLeft: Number,
     },
-    template: `<form @submit="handleGuess" id="take-a-guess">
+    data: function() {
+      return {
+        guess: ''
+      }
+    },
+    template: `<form @submit.prevent="handleGuess(guess)" id="take-a-guess">
                   <input  autocomplete="off" v-model="guess" value="guess" id="hangman-guess" name="hangman-guess" placeholder="Guess" :disabled="strikesLeft === 0" type="text" />
                   <label for="hangman-guess">Guess either a letter or the full word.</label>
                   <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
                       word once.</small>
               </form>`,
+
     methods: {
       'handleGuess': handleGuess
     }
   }
+
+  let RestartWrapper = {
+    props : {
+      displayModal: {
+        type: Boolean,
+        default: false
+      },
+      gameOverMsg: String,
+    },
+    template : `<div  id="restart-wrapper" >
+                  <h2 id="game-end-msg">{{ gameOverMsg }} </h2>
+                  <h3>Start over with a new word</h3>
+                  <button @click="emitNewWord('short')">Short Word</button>
+                  <button @click="emitNewWord('medium')">Medium Word</button>
+                  <button @click="emitNewWord('long')">Long Word</button>
+                </div>`,
+    methods: {
+      emitNewWord: function(wordLength) {
+        if (!availableWordLengths.includes(wordLength)) {
+          wordLength = "medium";
+        }
+    
+        let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
+        let wordToGuess = hangmanWords[wordLength][randomInt];
+        console.log(wordLength);
+        console.log(wordToGuess);
+        this.$emit('update_word', wordToGuess);
+      }
+    }
+
+  };
 
   let LettersToGuess = {
     props: {
@@ -328,13 +352,12 @@
   let data = {
     wordToGuess: '',
     wordToGuessArr: [],
-    playerName: null,
     guessedWord: null,
     restartModalVisible:  true,
     lettersGuessed: [],
     strikesLeft: 6,
     gameOverMsg: '',
-    guess: null,
+    // guess: null,
     gameOverMsg : '',
     restartModalVisible : false,
   }
@@ -343,19 +366,31 @@
     el: "#app",
     data: data,
     methods: {
-      getRandomWord,
-      handleGuess,
+      restartGame,
     },
     components: {
       'hang-man-gallows': HangManGallows,
       'strikes-left-counter' : StrikesLeftCounter,
       'guessed-letters-wrapper': GuessLettersWrapper,
-      'letters-to-guess': LettersToGuess
+      'letters-to-guess': LettersToGuess,
+      'guess-form': GuessForm,
+      'restart-wrapper': RestartWrapper,
     } 
   });
 
+  function restartGame (word){
+    console.log(word);
+    vm.wordToGuessArr = [];
+    vm.lettersGuessed = [];
+    vm.restartModalVisible = false;
+
+    for (let i = 0; i < vm.wordToGuess.length; i++) {
+      vm.wordToGuessArr.push('');
+    }
+    vm.strikesLeft = resetStrikeVal;
+  }
 
   groupRandomWordsByLength(randomWordList);
-  getRandomWord("medium");
+  // getRandomWord("medium");
   
 })();
