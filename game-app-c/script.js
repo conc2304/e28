@@ -112,26 +112,27 @@
   
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
     vm.wordToGuess = hangmanWords[wordLength][randomInt];
-    vm.wordToGuessArr = [];
+    vm.lettersToGuess = [];
     vm.lettersGuessed = [];
     vm.restartModalVisible = false;
   
     for (let i = 0; i < vm.wordToGuess.length; i++) {
-      vm.wordToGuessArr.push('');
+      vm.lettersToGuess.push('');
     }
     vm.strikesLeft = resetStrikeVal;
+    vm.strikesLeft = 6;
   }
 
   function restartGame (word){
     console.log(word);
-    this.wordToGuessArr = [];
+    this.lettersToGuess = [];
     this.lettersGuessed = [];
     this.restartModalVisible = false;
 
     for (let i = 0; i < vm.wordToGuess.length; i++) {
-      this.wordToGuessArr.push('');
+      this.lettersToGuess.push('');
     }
-    console.log(this.wordToGuessArr);
+    console.log(this.lettersToGuess);
     this.strikesLeft = resetStrikeVal;
   }
 
@@ -140,9 +141,9 @@
 
   let data = {
     wordToGuess: '',
-    wordToGuessArr: [],
+    lettersToGuess: [],
     lettersGuessed: [],
-    strikesLeft: 6,
+    strikesLeft: 0,
     gameOverMsg: '',
     restartModalVisible : false,
   }

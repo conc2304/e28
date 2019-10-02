@@ -18,7 +18,7 @@
 
             <hang-man-gallows :strikes-left="strikesLeft" />
             </hang-man-gallows>
-            <letters-to-guess :word-to-guess-arr="wordToGuessArr"></letters-to-guess>
+            <letters-to-guess :letters-to-guess="lettersToGuess"></letters-to-guess>
             <guessed-letters-wrapper :letters-guessed="lettersGuessed"></guessed-letters-wrapper>
             <strikes-left-counter :strikes-left="strikesLeft"></strikes-left-counter>
 
@@ -26,7 +26,7 @@
                 :strikes-left="strikesLeft"
                 :word-to-guess="wordToGuess"
                 :letters-guessed="lettersGuessed"
-                :word-to-guess-arr="wordToGuessArr"
+                :letters-to-guess="lettersToGuess"
                 :strikes-left="strikesLeft"
                 >
             </guess-form>
