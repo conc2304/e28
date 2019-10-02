@@ -91,59 +91,58 @@
     }
 
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
-    let wordToGuess = hangmanWords[wordLength][randomInt];
-    console.log(wordLength);
-    console.log(wordToGuess);
-
-    if (!this.$emit('update_word', wordToGuess)) {
-      vm.wordToGuess = wordToGuess;
-    }
-    
+    return hangmanWords[wordLength][randomInt];
   };
 
 
   function initializeView() {
-
     wordLength = 'medium';
     groupRandomWordsByLength(randomWordList);
-    if (!availableWordLengths.includes(wordLength)) {
-      wordLength = "medium";
-    }
   
     let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
     vm.wordToGuess = hangmanWords[wordLength][randomInt];
-    vm.lettersToGuess = [];
-    vm.lettersGuessed = [];
-    vm.restartModalVisible = false;
   
     for (let i = 0; i < vm.wordToGuess.length; i++) {
       vm.lettersToGuess.push('');
     }
     vm.strikesLeft = resetStrikeVal;
-    vm.strikesLeft = 6;
   }
 
-  function restartGame (word){
-    console.log(word);
+  function restartGame (wordLength){
+    let word = getRandomWord(wordLength);
+
     this.lettersToGuess = [];
     this.lettersGuessed = [];
     this.restartModalVisible = false;
+    this.strikesLeft = resetStrikeVal;
+    this.wordToGuess = word;
 
-    for (let i = 0; i < vm.wordToGuess.length; i++) {
+    for (let i = 0; i < word.length; i++) {
       this.lettersToGuess.push('');
     }
-    console.log(this.lettersToGuess);
-    this.strikesLeft = resetStrikeVal;
   }
 
+  function updateStrikeCount(numStrikesLeft){
+    this.strikesLeft = numStrikesLeft
+  }
 
+  function handleGameOver(gameOverObj) {
+    console.log(gameOverObj);
+    if (gameOverObj.status === "pending") {
+      return;
+    }
+    this.restartModalVisible = true;
+    this.gameOverMsg = gameOverObj.gameOverMsg;
+    console.log(this.gameOverMsg);
+
+  }
 
 
   let data = {
     wordToGuess: '',
     lettersToGuess: [],
     lettersGuessed: [],
-    strikesLeft: 0,
+    strikesLeft: 6,
     gameOverMsg: '',
     restartModalVisible : false,
   }
@@ -153,17 +152,22 @@
     data: data,
     methods: {
       restartGame,
+      updateStrikeCount,
+      handleGameOver,
     },
     components: {
       'hang-man-gallows': HangManGallows,
       'strikes-left-counter' : StrikesLeftCounter,
       'guessed-letters-wrapper': GuessedLetters,
       'letters-to-guess': LettersToGuess,
-      'guess-form': GuessForm,
+      'word-guess-form': GuessForm,
       'restart-wrapper': GameRestarter,
     },
     mounted() {
       console.log('mounted');
+    },
+    created() {
+
     }
   });
 

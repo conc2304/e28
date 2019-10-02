@@ -20,20 +20,24 @@
             </hang-man-gallows>
             <letters-to-guess :letters-to-guess="lettersToGuess"></letters-to-guess>
             <guessed-letters-wrapper :letters-guessed="lettersGuessed"></guessed-letters-wrapper>
-            <strikes-left-counter :strikes-left="strikesLeft"></strikes-left-counter>
+            <strikes-left-counter 
+                :strikes-left="strikesLeft">
+            </strikes-left-counter>
 
-            <guess-form 
+            <word-guess-form 
                 :strikes-left="strikesLeft"
                 :word-to-guess="wordToGuess"
                 :letters-guessed="lettersGuessed"
                 :letters-to-guess="lettersToGuess"
-                :strikes-left="strikesLeft"
+                v-on:update_strikes="updateStrikeCount" 
+                v-on:game_over="handleGameOver"
                 >
-            </guess-form>
+            </word-guess-form>
             <restart-wrapper 
                 :display-modal="restartModalVisible" 
                 :game-over-msg="gameOverMsg"
-                v-on:guess_made="restartGame">
+                v-on:update_word="restartGame"
+                >
             </restart-wrapper>
         </div>
     </div>

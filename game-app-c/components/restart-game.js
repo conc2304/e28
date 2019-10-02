@@ -15,15 +15,7 @@ let GameRestarter = {
                 </div>`,
     methods: {
       emitNewWord: function(wordLength) {
-        if (!availableWordLengths.includes(wordLength)) {
-          wordLength = "medium";
-        }
-    
-        let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
-        let wordToGuess = hangmanWords[wordLength][randomInt];
-        console.log(wordLength);
-        console.log(wordToGuess);
-        this.$emit('update_word', wordToGuess);
+        this.$emit('update_word', wordLength);
       }
     }
   };

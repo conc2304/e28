@@ -2,16 +2,19 @@
  * Submit handler for making a guess.  Updates the strike count, updates the letters guessed, and those guessed correctly.
  * @param {*} guess
  */
- function handleGuess(guess, wordToGuess, lettersGuessed, lettersToGuess, strikesLeft) {
+function handleGuess(
+  guess,
+  wordToGuess,
+  lettersGuessed,
+  lettersToGuess,
+  strikesLeft
+) {
   if (lettersGuessed.includes(guess)) {
     return;
   }
-  console.log(this);
-
   let gameOver = {
-    status: 'pending'
-  }
-
+    status: "pending"
+  };
 
   if (guess.length > 1) {
     if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
@@ -32,10 +35,14 @@
     if (indicesOfGuess.length === 0) {
       strikesLeft--;
       if (strikesLeft === 0) {
-        gameOver = handleGameOver('fail');
+        gameOver = handleGameOver("fail");
       }
     } else {
-      lettersToGuess = populateCorrectlyGuessedLetter(guess, indicesOfGuess, lettersToGuess);
+      lettersToGuess = populateCorrectlyGuessedLetter(
+        guess,
+        indicesOfGuess,
+        lettersToGuess
+      );
     }
 
     lettersGuessed = guessedLetterPop(guess, lettersGuessed);
@@ -46,53 +53,40 @@
     console.log("wrong");
   }
 
-  this.guess = '';
+  this.guess = "";
+  this.$emit("update_strikes", strikesLeft);
+  this.$emit("game_over", gameOver);
+}
 
-  // let emitGuess = {
-  //   lettersGuessed: lettersGuessed,
-  //   lettersToGuess: lettersToGuess,
-  //   guess: '',
-  //   strikesLeft: strikesLeft,
-  // };
-
-  // if (gameOver.status !== 'pending')  {
-    
-  // }
-  // this.$emit("guess_made", emitGuess);
-};
-
-
-  /**
-  * Check to see if all the letters of the word have been guessed.
-  * @param {string} wordToGuess 
-  */
- let validateWordCompletion = (wordToGuess, lettersToGuess) => {
-
-  let guessedStr = '';
+/**
+ * Check to see if all the letters of the word have been guessed.
+ * @param {string} wordToGuess
+ */
+let validateWordCompletion = (wordToGuess, lettersToGuess) => {
+  let guessedStr = "";
   for (let letter of lettersToGuess) {
     guessedStr += letter;
   }
 
   return guessedStr.toUpperCase() === wordToGuess.toUpperCase();
-}
+};
 
-
-  /**
-  * Display the restart game message based on successfull completion of the game;
-  * @param {string} status 
-  */
- let handleGameOver = (status) => {
-
+/**
+ * Display the restart game message based on successfull completion of the game;
+ * @param {string} status
+ */
+let handleGameOver = status => {
   let msg;
 
-  if (status === 'success') {
-    msg = "Congratulations You Won! Go on keep playing you know this is a blast!"
+  if (status === "success") {
+    msg =
+      "Congratulations You Won! Go on keep playing you know this is a blast!";
   } else {
     msg = "Welp, that sucked, better luck next time pal ¯\\_(ツ)_/¯";
   }
 
-  return { status: status, gameOverMsg: msg} ;
-}
+  return { status: status, gameOverMsg: msg };
+};
 
 /**
  * Get all of the indexes for the letter guessed in the word.
@@ -116,8 +110,6 @@ let getGuessIndexes = (guess, wordToGuess) => {
  * @param {array} indices
  */
 let populateCorrectlyGuessedLetter = (letter, indices, lettersToGuess) => {
-  let temp = lettersToGuess;
-
   for (let index of indices) {
     lettersToGuess.splice(index, 1, letter);
   }
@@ -130,7 +122,7 @@ let populateCorrectlyGuessedLetter = (letter, indices, lettersToGuess) => {
  */
 let handleStrike = strikesLeft => {
   --strikesLeft;
-  return strikesLeft
+  return strikesLeft;
 };
 
 /**
