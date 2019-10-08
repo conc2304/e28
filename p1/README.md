@@ -15,9 +15,9 @@
 
   ### Todo
 
-    I got too caught up learning how event handling needs to bubble up to the root at before being dessiminated down to sibliing components.  On my todo list is to learn ES6 Modules
+  I got too caught up learning how event handling needs to bubble up to the root at before being dessiminated down to sibliing components.  On my todo list is to learn ES6 Modules
 
-    Resources 
+   Resources 
     * [Getting Started with Single File Components](https://travishorn.com/getting-started-with-vue-single-file-components-f29765a771a3)
     * [Intro to Single File Components](https://dev.to/sambenskin/an-introduction-to-single-file-components-in-vuejs-10el)
     * [Building Large-Scale Apps](https://v1.vuejs.org/guide/application.html)
