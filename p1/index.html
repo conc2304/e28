@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A Game of Hangman V2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="game-app.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+</head>
+
+<body>
+    <div id='app' v-cloak>
+        <div class="container">
+            <h1 id="page-title" class="block">This is Hang Man</h1>
+
+            <hang-man-gallows :strikes-left="strikesLeft" />
+            </hang-man-gallows>
+            <letters-to-guess :letters-to-guess="lettersToGuess"></letters-to-guess>
+            <guessed-letters-wrapper :letters-guessed="lettersGuessed"></guessed-letters-wrapper>
+            <strikes-left-counter 
+                :strikes-left="strikesLeft">
+            </strikes-left-counter>
+
+            <word-guess-form 
+                :strikes-left="strikesLeft"
+                :word-to-guess="wordToGuess"
+                :letters-guessed="lettersGuessed"
+                :letters-to-guess="lettersToGuess"
+                v-on:update_strikes="updateStrikeCount" 
+                v-on:game_over="handleGameOver"
+                >
+            </word-guess-form>
+            <restart-wrapper 
+                :display-modal="restartModalVisible" 
+                :game-over-msg="gameOverMsg"
+                v-on:update_word="restartGame"
+                >
+            </restart-wrapper>
+        </div>
+    </div>
+    <script src="components/guessed-letters.js" defer></script>
+    <script src="components/hangman-gallows.js" defer></script>
+    <script src="components/letters-to-guess.js" defer></script>
+    <script src="components/restart-game.js" defer></script>
+    <script src="components/strikes-left-counter.js" defer></script>
+    <script src="components/word-guess-form.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
