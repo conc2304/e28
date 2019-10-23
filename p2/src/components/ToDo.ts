@@ -1,6 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import WithRender from './to-do.html';
-import ToDoForm from './ToDoForm'
+import ToDoForm from './ToDoForm';
+import Task from '@/types/Task';
 
 @WithRender
 @Component({
@@ -10,5 +11,9 @@ import ToDoForm from './ToDoForm'
 })
 
 export default class Todo extends Vue {
-    
+    public tasks: Task[] = [
+        { description: 'Make Coffee', completed: false },
+        { description: 'Feed Dragons', completed: false },
+    ];
+
 }
