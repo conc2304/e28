@@ -6,8 +6,8 @@ import Task from '@/types/Task';
 @WithRender
 @Component({
     components: {
-        'to-do-form': ToDoForm
-    }
+        'to-do-form': ToDoForm,
+    },
 })
 
 export default class Todo extends Vue {
@@ -16,4 +16,7 @@ export default class Todo extends Vue {
         { description: 'Feed Dragons', completed: false },
     ];
 
+    public addTask(description: string): void {
+        this.tasks.push({ description, completed: false });
+    }
 }
