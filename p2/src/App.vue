@@ -1,30 +1,30 @@
 <template>
   <div id="app">
-        <div id='app' v-cloak>
-        <div class="container">
-            <h1 id="page-title" class="block">This is Hang Man</h1>
+    <div id='app' v-cloak>
+    <div class="container">
+        <h1 id="page-title" class="block">This is Hang Man</h1>
 
-            <HangmanGallows :strikes-left="strikesLeft" />
-            <LettersToGuess :letters-to-guess="lettersToGuess" />
-            <GuessedLetters :letters-guessed="lettersGuessed"/>
+        <HangmanGallows :strikes-left="strikesLeft" />
+        <LettersToGuess :letters-to-guess="lettersToGuess" />
+        <GuessedLetters :letters-guessed="lettersGuessed"/>
 
-            <StrikesLeftCounter :strikes-left="strikesLeft" />
-            <WordGuessForm
-              :strikes-left="strikesLeft"
-              :word-to-guess="wordToGuess"
-              :letters-guessed="lettersGuessed"
-              :letters-to-guess="lettersToGuess"
-              v-on:update_strikes="updateStrikeCount" 
-              v-on:game_over="handleGameOver"
-            />
+        <StrikesLeftCounter :strikes-left="strikesLeft" />
+        <WordGuessForm
+          :strikes-left="strikesLeft"
+          :word-to-guess="wordToGuess"
+          :letters-guessed="lettersGuessed"
+          :letters-to-guess="lettersToGuess"
+          v-on:update_strikes="updateStrikeCount" 
+          v-on:game_over="handleGameOver"
+        />
 
-            <RestartGame 
-              :display-modal="restartModalVisible" 
-              :game-over-msg="gameOverMsg"
-              v-on:update_word="restartGame"
-            />
+        <RestartGame 
+          :display-modal="restartModalVisible" 
+          :game-over-msg="gameOverMsg"
+          v-on:update_word="restartGame"
+        />
 
-        </div>
+    </div>
     </div>
   </div>
 </template>
