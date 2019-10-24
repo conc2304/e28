@@ -151,7 +151,6 @@ function initializeView() {
 
   let randomInt = getRandomInt(0, hangmanWords[wordLength].length - 1);
   this.wordToGuess = hangmanWords[wordLength][randomInt];
-  console.log(this.wordToGuess);
 
   for (let i = 0; i < this.wordToGuess.length; i++) {
     this.lettersToGuess.push('');
@@ -176,14 +175,12 @@ function updateStrikeCount(numStrikesLeft){
 }
 
 function handleGameOver(gameOverObj) {
-  console.log(gameOverObj);
   if (gameOverObj.status === "pending") {
     return;
   }
   this.restartModalVisible = true;
   this.gameOverMsg = gameOverObj.gameOverMsg;
   console.log(this.gameOverMsg);
-
 }
 
 
