@@ -2,74 +2,88 @@
 
 
 <template>
-   <form @submit.prevent="handleGuess(guess, wordToGuess, lettersGuessed, lettersToGuess, strikesLeft)" id="take-a-guess">
-        <input  autocomplete="off" v-model="guess" value="guess" id="hangman-guess" name="hangman-guess" placeholder="Guess" :disabled="strikesLeft === 0" type="text" />
-        <label for="hangman-guess">Guess either a letter or the full word.</label>
-        <small>Guessing more than 1 letter counts as guessing the full word. <br>You can only guess the full
-            word once.</small>
-    </form> 
+	<form
+		@submit.prevent="handleGuess(guess, wordToGuess, lettersGuessed, lettersToGuess, strikesLeft)"
+		id="take-a-guess"
+	>
+		<input
+			autocomplete="off"
+			v-model="guess"
+			value="guess"
+			id="hangman-guess"
+			name="hangman-guess"
+			placeholder="Guess"
+			:disabled="strikesLeft === 0"
+			type="text"
+		/>
+		<label for="hangman-guess">Guess either a letter or the full word.</label>
+		<small>
+			Guessing more than 1 letter counts as guessing the full word.
+			<br />You can only guess the full
+			word once.
+		</small>
+	</form>
 </template>
 
 <script>
-
 /**
  * Submit handler for making a guess.  Updates the strike count, updates the letters guessed, and those guessed correctly.
  * @param {*} guess
  */
 function handleGuess(
-  guess,
-  wordToGuess,
-  lettersGuessed,
-  lettersToGuess,
-  strikesLeft
+	guess,
+	wordToGuess,
+	lettersGuessed,
+	lettersToGuess,
+	strikesLeft
 ) {
-  if (lettersGuessed.includes(guess)) {
-    return;
-  }
-  let gameOver = {
-    status: "pending"
-  };
+	if (lettersGuessed.includes(guess)) {
+		return;
+	}
+	let gameOver = {
+		status: 'pending'
+	};
 
-  if (guess.length > 1) {
-    if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
-      gameOver = handleGameOver("success");
+	if (guess.length > 1) {
+		if (guess.toLowerCase() === wordToGuess.toLowerCase()) {
+			gameOver = handleGameOver('success');
 
-      for (let i = 0; i < lettersToGuess; i++) {
-        lettersToGuess[i] = wordToGuess.charAt(i);
-      }
+			for (let i = 0; i < lettersToGuess; i++) {
+				lettersToGuess[i] = wordToGuess.charAt(i);
+			}
 
-      console.log("Winner Winner Chicken Dinner!");
-    } else {
-      gameOver = handleGameOver("fail");
-      console.log("Loser Loser Booger Chooser!");
-      strikesLeft = 0;
-    }
-  } else if (guess.length === 1) {
-    let indicesOfGuess = getGuessIndexes(guess, wordToGuess);
-    if (indicesOfGuess.length === 0) {
-      strikesLeft--;
-      if (strikesLeft === 0) {
-        gameOver = handleGameOver("fail");
-      }
-    } else {
-      lettersToGuess = populateCorrectlyGuessedLetter(
-        guess,
-        indicesOfGuess,
-        lettersToGuess
-      );
-    }
+			console.log('Winner Winner Chicken Dinner!');
+		} else {
+			gameOver = handleGameOver('fail');
+			console.log('Loser Loser Booger Chooser!');
+			strikesLeft = 0;
+		}
+	} else if (guess.length === 1) {
+		let indicesOfGuess = getGuessIndexes(guess, wordToGuess);
+		if (indicesOfGuess.length === 0) {
+			strikesLeft--;
+			if (strikesLeft === 0) {
+				gameOver = handleGameOver('fail');
+			}
+		} else {
+			lettersToGuess = populateCorrectlyGuessedLetter(
+				guess,
+				indicesOfGuess,
+				lettersToGuess
+			);
+		}
 
-    lettersGuessed = guessedLetterPop(guess, lettersGuessed);
-    if (validateWordCompletion(wordToGuess, lettersToGuess)) {
-      gameOver = handleGameOver("success");
-    }
-  } else {
-    console.log("wrong");
-  }
+		lettersGuessed = guessedLetterPop(guess, lettersGuessed);
+		if (validateWordCompletion(wordToGuess, lettersToGuess)) {
+			gameOver = handleGameOver('success');
+		}
+	} else {
+		console.log('wrong');
+	}
 
-  this.guess = "";
-  this.$emit("update_strikes", strikesLeft);
-  this.$emit("game_over", gameOver);
+	this.guess = '';
+	this.$emit('update_strikes', strikesLeft);
+	this.$emit('game_over', gameOver);
 }
 
 /**
@@ -77,12 +91,12 @@ function handleGuess(
  * @param {string} wordToGuess
  */
 let validateWordCompletion = (wordToGuess, lettersToGuess) => {
-  let guessedStr = "";
-  for (let letter of lettersToGuess) {
-    guessedStr += letter;
-  }
+	let guessedStr = '';
+	for (let letter of lettersToGuess) {
+		guessedStr += letter;
+	}
 
-  return guessedStr.toUpperCase() === wordToGuess.toUpperCase();
+	return guessedStr.toUpperCase() === wordToGuess.toUpperCase();
 };
 
 /**
@@ -90,16 +104,16 @@ let validateWordCompletion = (wordToGuess, lettersToGuess) => {
  * @param {string} status
  */
 let handleGameOver = status => {
-  let msg;
+	let msg;
 
-  if (status === "success") {
-    msg =
-      "Congratulations You Won! Go on keep playing you know this is a blast!";
-  } else {
-    msg = "Welp, that sucked, better luck next time pal ¯\\_(ツ)_/¯";
-  }
+	if (status === 'success') {
+		msg =
+			'Congratulations You Won! Go on keep playing you know this is a blast!';
+	} else {
+		msg = 'Welp, that sucked, better luck next time pal ¯\\_(ツ)_/¯';
+	}
 
-  return { status: status, gameOverMsg: msg };
+	return { status: status, gameOverMsg: msg };
 };
 
 /**
@@ -108,14 +122,14 @@ let handleGameOver = status => {
  * @param {string} wordToGuess
  */
 let getGuessIndexes = (guess, wordToGuess) => {
-  let indices = [];
-  for (let i = 0; i < wordToGuess.length; i++) {
-    if (wordToGuess[i] === guess) {
-      indices.push(i);
-    }
-  }
+	let indices = [];
+	for (let i = 0; i < wordToGuess.length; i++) {
+		if (wordToGuess[i] === guess) {
+			indices.push(i);
+		}
+	}
 
-  return indices;
+	return indices;
 };
 
 /**
@@ -124,19 +138,19 @@ let getGuessIndexes = (guess, wordToGuess) => {
  * @param {array} indices
  */
 let populateCorrectlyGuessedLetter = (letter, indices, lettersToGuess) => {
-  for (let index of indices) {
-    lettersToGuess.splice(index, 1, letter);
-  }
+	for (let index of indices) {
+		lettersToGuess.splice(index, 1, letter);
+	}
 
-  return lettersToGuess;
+	return lettersToGuess;
 };
 
 /**
  * Display parts of the 'hang man' based on number of stikes left. Call the game-over handler on 0 strikes.
  */
 let handleStrike = strikesLeft => {
-  --strikesLeft;
-  return strikesLeft;
+	--strikesLeft;
+	return strikesLeft;
 };
 
 /**
@@ -144,7 +158,7 @@ let handleStrike = strikesLeft => {
  * @param {string} guessedLetter
  */
 let guessedLetterPop = (guessedLetter, lettersGuessed) => {
-  lettersGuessed.push(guessedLetter);
+	lettersGuessed.push(guessedLetter);
 };
 
 /**
@@ -154,47 +168,48 @@ let guessedLetterPop = (guessedLetter, lettersGuessed) => {
  * @returns {number}
  */
 let getRandomInt = (min, max) => {
-  return (
-    Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) +
-    Math.ceil(min)
-  );
+	return (
+		Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) +
+		Math.ceil(min)
+	);
 };
 
 export default {
-    props: {
-        strikesLeft: Number,
-        wordToGuess: {
-            type: String,
-            default: ""
-        },
-        lettersGuessed: {
-            type: Array,
-            default: []
-        },
-        lettersToGuess: {
-            type: Array,
-            default: []
-        }
-    },
-    data: function() {
-        return {
-            guess: ""
-        };
-    },
-    methods: {
-        handleGuess
-    }
-}
+	props: {
+		strikesLeft: Number,
+		wordToGuess: {
+			type: String,
+			default: ''
+		},
+		lettersGuessed: {
+			type: Array,
+			default: []
+		},
+		lettersToGuess: {
+			type: Array,
+			default: []
+		}
+	},
+	data: function() {
+		return {
+			guess: ''
+		};
+	},
+	methods: {
+		handleGuess
+	}
+};
 </script>
 
 <style scoped>
-    #take-a-guess {
-        text-align: center;
-    }
-  
-    #take-a-guess input, #take-a-guess label {
-        display: block;
-        margin: 0 auto;
-    }
+#take-a-guess {
+	text-align: center;
+}
+
+#take-a-guess input,
+#take-a-guess label {
+	display: block;
+	margin: 0 auto;
+}
 </style>
 
