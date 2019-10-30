@@ -1,12 +1,31 @@
-# p2
 
-> Hangman as SFC Vue App
+# Project 2
++ By: Jose Conchello
++ Production URL: <http://p2.joseconchello.com>
+
+
+## Build strategy
+*Put an x in the build strategy you used. Put an x in each if you tackled both.*
++ [ ] Integrated
++ [x] Comprehensive
+
+## Outside resources
+<https://scotch.io/tutorials/how-to-build-a-simple-single-page-application-using-vue-2-part-1>
+
+<https://dev.to/georgehanson/building-vuejs-applications-with-typescript-1j2n> but not really
+## Notes for instructor
+I would have liked to set up dependency injections. Maybe next project.
+I tried a few times to write this in typescript to try to learn it but it proved a bit too much.
+
 
 ## Build Setup
 
 ``` bash
+# From /p2 directory
+
 # install dependencies
 npm install
+
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -18,4 +37,3 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
