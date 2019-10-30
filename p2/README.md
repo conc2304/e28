@@ -5,7 +5,6 @@
 
 
 ## Build strategy
-*Put an x in the build strategy you used. Put an x in each if you tackled both.*
 + [ ] Integrated
 + [x] Comprehensive
 
