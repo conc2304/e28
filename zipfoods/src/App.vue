@@ -2,11 +2,13 @@
   #app
     img#logo(src="./assets/images/zipfoods-logo.png")
     p {{ headline }}
+    ShowFeatured( :category='"snacks"')
     ShowProducts
 </template>
 
 <script>
 import ShowProducts from './components/ShowProducts.vue';
+import ShowFeatured from './components/ShowFeatured.vue';
 
 export default {
   name: 'App',
@@ -16,6 +18,7 @@ export default {
   }),
   components: {
     ShowProducts,
+    ShowFeatured,
   },
 };
 </script>
