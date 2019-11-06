@@ -1,29 +1,25 @@
 <template lang="pug">
   #app
     img#logo(src="./assets/images/zipfoods-logo.png")
-    ShowCategories( :products='products')
-    ShowHome( :products='products')
-    ShowProducts( :products='products')
+    nav
+      ul
+        li( v-for='link in links' :key='link')
+          router-link( :to="paths[link]" exact) {{ link }}
+    router-view
 </template>
 
 <script>
-import products from './products';
-import ShowProducts from './components/ShowProducts.vue';
-import ShowCategories from './components/ShowCategories.vue';
-import ShowHome from './components/ShowHome.vue';
-
 export default {
   name: 'App',
   data: () => ({
-    headline:
-      'ZipFoods is your one-stop-shop for convenient online grocery shopping in the greater Boston area.',
-    products,
+    links: ['home', 'products', 'categories'],
+    paths: {
+      home: '/',
+      products: '/products',
+      categories: '/categories',
+    },
   }),
-  components: {
-    ShowProducts,
-    ShowCategories,
-    ShowHome,
-  },
+  components: {},
 };
 </script>
 

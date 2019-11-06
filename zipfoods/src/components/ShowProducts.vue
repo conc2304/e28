@@ -9,16 +9,15 @@
 
 <script>
 import ShowProduct from '@/components/ShowProduct.vue';
+import products from '../products';
 
 export default {
   components: {
     ShowProduct,
   },
-  props: {
-    products: {
-      type: Array,
-    },
-  },
-  data: () => ({}),
+  props: {},
+  data: () => ({
+    products,
+  }),
 };
 </script>

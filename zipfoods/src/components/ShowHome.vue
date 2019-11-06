@@ -9,15 +9,13 @@
 
 <script>
 import ShowFeatured from './ShowFeatured.vue';
+import products from '../products';
 
 export default {
   name: 'ShowHome',
-  props: {
-    products: {
-      type: Array,
-    },
-  },
+  props: {},
   data: () => ({
+    products,
     headline:
       'ZipFoods is your one-stop-shop for convenient online grocery shopping in the greater Boston area.',
   }),

@@ -6,13 +6,14 @@
 </template>
 
 <script>
+import products from '../products';
+
 export default {
   name: 'ShowCategories',
-  props: {
-    products: {
-      type: Array,
-    },
-  },
+  props: {},
+  data: () => ({
+    products,
+  }),
   computed: {
     categories() {
       const categories = this.products.map(product => product.categories);
