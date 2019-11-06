@@ -1,20 +1,16 @@
 <template lang="pug">
   #app
     img#logo(src="./assets/images/zipfoods-logo.png")
-    p {{ headline }}
-    ShowFeatured(
-      :category='"snacks"'
-      :products='products'
-    )
+    ShowCategories( :products='products')
+    ShowHome( :products='products')
     ShowProducts( :products='products')
 </template>
 
 <script>
 import products from './products';
 import ShowProducts from './components/ShowProducts.vue';
-import ShowFeatured from './components/ShowFeatured.vue';
-
-console.log(products);
+import ShowCategories from './components/ShowCategories.vue';
+import ShowHome from './components/ShowHome.vue';
 
 export default {
   name: 'App',
@@ -25,10 +21,12 @@ export default {
   }),
   components: {
     ShowProducts,
-    ShowFeatured,
+    ShowCategories,
+    ShowHome,
   },
 };
 </script>
+
 <style lang="scss">
 @import './assets/css/zipfoods.scss';
 </style>

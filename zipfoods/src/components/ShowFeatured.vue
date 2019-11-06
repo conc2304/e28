@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'ShowFeatured',
   props: {
     category: {
       type: String,
@@ -26,7 +27,6 @@ export default {
       return this.products.filter(isMatch, this.category);
     },
   },
-  data: () => ({
-  }),
+  data: () => ({}),
 };
 </script>

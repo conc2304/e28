@@ -1,6 +1,6 @@
 <template lang="pug">
   #products
-    h2 {{ Products }}
+    h2 Products
     ShowProduct(
       v-for='product in products'
       :key='product.id'
