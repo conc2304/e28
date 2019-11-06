@@ -2,14 +2,17 @@
   #app
     img#logo(src="./assets/images/zipfoods-logo.png")
     p {{ headline }}
-    ShowFeatured( :category='"snacks"')
-    ShowProducts
+    ShowFeatured(
+      :category='"snacks"'
+      :products='products'
+    )
+    ShowProducts( :products='products')
 </template>
 
 <script>
+import products from './products';
 import ShowProducts from './components/ShowProducts.vue';
 import ShowFeatured from './components/ShowFeatured.vue';
-import products from './products';
 
 console.log(products);
 
