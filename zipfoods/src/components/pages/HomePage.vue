@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import ShowFeatured from './ShowFeatured.vue';
-import products from '../products';
+import ShowFeatured from '@/components/ShowFeatured.vue';
+import products from '@/products';
 
 export default {
   name: 'ShowHome',

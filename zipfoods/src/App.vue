@@ -4,7 +4,7 @@
     nav
       ul
         li( v-for='link in links' :key='link')
-          router-link( :to="paths[link]" exact) {{ link }}
+          router-link( exact  :to='{ name: link }' ) {{ link }}
     router-view
 </template>
 
@@ -13,11 +13,6 @@ export default {
   name: 'App',
   data: () => ({
     links: ['home', 'products', 'categories'],
-    paths: {
-      home: '/',
-      products: '/products',
-      categories: '/categories',
-    },
   }),
   components: {},
 };

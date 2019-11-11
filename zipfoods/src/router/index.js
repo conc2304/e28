@@ -1,16 +1,31 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import ShowHome from '../components/ShowHome.vue';
-import ShowProducts from '../components/ShowProducts.vue';
-import ShowCategories from '../components/ShowCategories.vue';
+import ShowHome from '@/components/pages/HomePage.vue';
+import ShowProducts from '@/components/pages/ProductsPage.vue';
+import ShowCategories from '@/components/pages/CategoriesPage.vue';
+import ProductPage from '@/components/pages/ProductPage.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: ShowHome },
-  { path: '/products', component: ShowProducts },
-  { path: '/categories', component: ShowCategories },
+  { path: '/', component: ShowHome, name: 'home' },
+  {
+    path: '/products',
+    component: ShowProducts,
+    name: 'products',
+  },
+  {
+    path: '/categories',
+    component: ShowCategories,
+    name: 'categories',
+  },
+  {
+    path: '/products/:id',
+    component: ProductPage,
+    name: 'product',
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

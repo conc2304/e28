@@ -1,9 +1,12 @@
 <template lang="pug">
-  .product
-    .product-name {{ product.name }}
-    img.product-thumb( :src='"./../assets/images/products/" + product.id + ".jpg"')
-    p.product-description {{ product.description }}
-    .product-price ${{ product.price }}
+  router-link( :to='{ name:"product", params: { id: product.id }}')
+    .product
+      .product-name {{ product.name }}
+      img.product-thumb(
+        :src='"@/assets/images/products/" + product.id + ".jpg"'
+        :alt='"Product image of  " + product.name'
+      )
+
 </template>
 
 <script>

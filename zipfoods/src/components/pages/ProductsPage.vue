@@ -9,7 +9,7 @@
 
 <script>
 import ShowProduct from '@/components/ShowProduct.vue';
-import products from '../products';
+import products from '@/products';
 
 export default {
   components: {
