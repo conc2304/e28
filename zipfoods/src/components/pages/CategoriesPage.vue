@@ -6,21 +6,32 @@
 </template>
 
 <script>
-import products from '@/products';
+const axios = require('axios');
 
 export default {
   name: 'ShowCategories',
   props: {},
   data: () => ({
-    products,
+    products: [],
+    categories: [],
   }),
-  computed: {
-    categories() {
+  methods: {
+    loadCategories() {
       const categories = this.products.map(product => product.categories);
       const mergedCategories = [].concat(...categories);
 
       return [...new Set(mergedCategories)].sort();
     },
+  },
+  mounted() {
+    this.products = axios
+      .get(
+        'https://my-json-server.typicode.com/conc2304/e28-zipfoods-api/products',
+      )
+      .then((response) => {
+        this.products = response.data;
+        this.loadCategories();
+      });
   },
 };
 </script>
