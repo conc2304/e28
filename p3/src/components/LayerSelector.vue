@@ -30,7 +30,6 @@ export default {
   methods: {
     selectLayer(layerIndex) {
       this.layerSelected = layerIndex;
-      console.log(`Layer Selected ${layerIndex}`);
       this.$emit('layer_selected', this.sketches[layerIndex]);
     },
   },
