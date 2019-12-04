@@ -1,5 +1,14 @@
 // to do make shared object functions into an object
 
+// TODO these constants need to go back to MidiControlService.js or be imported
+// TODO MidiControlService.js needs to be injected in files  (but also a few others)
+const Note_Pressed   = 159;
+const Note_Held      = 175;
+const Note_Off       = 143;
+const Knob_Active    = 176;
+const Drum_Pad_Hit   = 153;
+
+
 const easeInto = function() {
   let attribute;
   let easeBy;
@@ -38,6 +47,7 @@ const easeInto = function() {
     // then ease into the target value,
     // once we have hit the target value
     if (triggerIsDrumPad && targetValue === currentValue) {
+      console.log('glitch');
       targetValue = this[attribute].targetValue = resetValue;
       this[attribute].triggerSource = null;  // once we have reached the peak unset the trigger source
     }

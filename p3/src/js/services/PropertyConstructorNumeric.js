@@ -19,7 +19,8 @@ class NumericProperty {
     this.targetValue = null;
 
     //  this value that can be set/edited by the user
-    const padding = (maxValue - minValue) * 0.1;
+    // const padding = (maxValue - minValue) * 0.05;
+    const padding = 0;
     this.min = minValue + padding;
     this.max = maxValue - padding;
 
@@ -27,13 +28,13 @@ class NumericProperty {
     this.defaultMin = minValue;
     this.defaultMax = maxValue;
 
-
     this.audio = {
       responsiveType: 'add',
       responsiveOptions: ['add', 'subtract'],
       gain: 0.5,
       fall: 1, // not sure what this will do yet
     };
+
     this.triggerSource = null;
     this.lockOn = false;
     this.easingValue = easingValue;

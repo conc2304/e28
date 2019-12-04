@@ -13,11 +13,11 @@ class OuterWaves {
     this.shake = false;
     this.shakeGain = 0.009; // should be make this a dial/ controllable by button
 
-    this.numWaves = new NumericProperty('Instances', 'Base', 1, 0, 10, 0.5);
+    this.numWaves = new NumericProperty('Number of Waves', 'Base', 3, 0, 9, 0.5);
     this.radius = new NumericProperty('Size', 'Base', 10, 0, 200, 0.5);
-    this.velocity = new NumericProperty('Velocity', 'Base', 0.025, -0.5, 0.5, 0.1);
+    this.velocity = new NumericProperty('Velocity', 'Base', 0.025, 0.02, 0.5, 0.1);
     this.amplitude = new NumericProperty('Amplitude', 'Base', 75, 0, 500, 0.1);
-    this.period = new NumericProperty('Period', 'Base', 500, 50, 2250, 0.07);
+    this.period = new NumericProperty('Period', 'Base', 1000, 0, 2250, 0.07);
     this.xSpacing = new NumericProperty('X Spacing', 'Base', 40, 15, 350, 0.1);
     this.ySpacing = new NumericProperty('Y Spacing', 'Base', 40, 5, 350, 0.1);
     this.waveType = new VariableProperty('Wave Type', 'Base', 'sin', ['sin', 'cos', 'tan']);
@@ -140,14 +140,14 @@ OuterWaves.prototype.renderShape = function(xPos, yPos, radius, spacing, p5) {
     p5.strokeWeight(3);
     p5.translate(xPos, yPos + spacing);
     p5.rotate(p5.atan(p5.frameCount / 50.0));
-    p5.polygon(0, 0, radius, sides);
+    p5.polygon(0, 0, radius, sides, p5);
     p5.pop();
 
     p5.push();
     p5.strokeWeight(3);
     p5.translate(xPos, yPos - spacing);
     p5.rotate(p5.atan(p5.frameCount / -50.0));
-    p5.polygon(0, 0, radius, sides);
+    p5.polygon(0, 0, radius, sides, p5);
     p5.pop();
   } else {
     p5.ellipse(xPos, yPos + spacing, radius, radius); // one above and one below

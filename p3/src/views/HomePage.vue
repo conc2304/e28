@@ -48,7 +48,7 @@
       v-card( dark color="#000" elevation="10")
         v-card-title.headline Login
         v-card-text
-          LoginComponent(
+          LoginPane(
             v-on:user_login_event="updateUser"
             :userLoggedIn="user.loggedIn"
           )
@@ -56,11 +56,11 @@
 
 <script>
 import ParticleScript from '@/js/sketches/SketchBaseHomePage';
-import LoginComponent from '@/components/LoginComponent.vue';
+import LoginPane from '@/components/LoginPane.vue';
 
 export default {
   components: {
-    LoginComponent,
+    LoginPane,
   },
   data: () => ({
     title: 'VYZBY',
@@ -86,11 +86,14 @@ export default {
   }),
   methods: {
     updateUser(userObj) {
+      console.log('login complete');
+      console.log(userObj);
       this.user.username = userObj.username;
       this.user.loggedIn = userObj.loggedIn;
       this.loginDialog = false;
     },
     userLogout() {
+      console.log('test')
       localStorage.removeItem('user');
       this.user.username = '';
       this.user.loggedIn = false;
@@ -101,6 +104,8 @@ export default {
     new P5(ParticleScript, 'splash-sketch-background');
 
     const userObj = JSON.parse(localStorage.getItem('user'));
+    console.log('userObj');
+    console.log(userObj);
     if (userObj) {
       this.user.username = userObj.username;
       this.user.loggedIn = userObj.loggedIn;

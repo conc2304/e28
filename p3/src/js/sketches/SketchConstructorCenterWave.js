@@ -10,11 +10,11 @@ class CenterWave {
     this.origin = 0;
     this.bypass = false;
 
-    this.radius = new NumericProperty('Size', 'Base', 20, -50, 2000, 0.7);
-    this.velocity = new NumericProperty('Velocity', 'Base', 0.025, -1, 1, 0.1);
-    this.amplitude = new NumericProperty('Amplitude', 'Base', 75, -2000, 2000, 0.1);
-    this.period = new NumericProperty('Period', 'Base', 500, -10250, 10250, 0.07);
-    this.xSpacing = new NumericProperty('X Spacing', 'Base', 40, 15, 350, 0.1);
+    this.radius = new NumericProperty('Size', 'Base', 20, 0, 2000, 0.7);
+    this.velocity = new NumericProperty('Velocity', 'Base', 0.025, 0, 1, 0.1);
+    this.amplitude = new NumericProperty('Amplitude', 'Base', 75, 0, 2000, 0.1);
+    this.period = new NumericProperty('Period', 'Base', 500, 0, 10250, 0.07);
+    this.xSpacing = new NumericProperty('X Spacing', 'Base', 40, 1, 350, 0.1);
 
     this.hue = new NumericProperty('Color', 'Color', 200, 0, 360, 0.1);
     this.saturation = new NumericProperty('Saturation', 'Color', 100, 0, 100, 0.1);
@@ -48,6 +48,9 @@ CenterWave.prototype.calcWave = function(p5) {
 
   this.origin += this.velocity.currentValue;
   let x = this.origin;
+
+  this.yPoints = new Array(Math.ceil(this.waveWidth / this.xSpacing.currentValue));
+
   for (let i = 0; i < this.yPoints.length; i++) {
     this.yPoints[i] = Math[this.waveType.currentValue](x) * this.amplitude.currentValue;
     x += dx;
@@ -61,7 +64,7 @@ CenterWave.prototype.render = function(p5) {
   if (this.xSpacing.currentValue <= 0) {
     this.xSpacing.currentValue = this.xSpacing.min / 2;
   }
-  this.yPoints = new Array(Math.floor(this.waveWidth / this.xSpacing.currentValue));
+  this.yPoints = new Array(Math.ceil(this.waveWidth / this.xSpacing.currentValue));
   this.calcWave(p5);
 
   p5.push();
@@ -115,7 +118,7 @@ CenterWave.prototype.renderShape = function(p5, xPos, yPos, radius) {
 
     p5.translate(xPos, yPos);
     p5.rotate(p5.sin(p5.frameCount / 50.0));
-    p5.polygon(0, 0, radius, sides);
+    p5.polygon(0, 0, radius, sides, p5);
     p5.pop();
   } else {
     p5.ellipse(xPos, yPos, radius, radius);

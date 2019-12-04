@@ -1,27 +1,26 @@
 /**
  *
  *    --  HERE ARE MY AMBITIONS - BEHOLD THEIR MULTITUDE!  --
- * todo - make a toggle to spin/rotate the inner and outer waves like the 3D ones
- * todo - make patterns by saving current config and make them triggerable (ie a pattern bank)
- * todo - put controls into an iFrame
- * todo - convert this entire thing into an web app
- * todo - loading animation
+ * TODO - make a toggle to spin/rotate the inner and outer waves like the 3D ones
+ * TODO - make patterns by saving current config and make them triggerable (ie a pattern bank)
+ * TODO - put controls into an iFrame
+ * TODO - convert this entire thing into an web app
+ * TODO - loading animation
  *
  */
 
-
 import RenderPolygon from '@/js/services/RenderPolygon';
 import RegisteredSketches from '@/js/services/SketchRegistration';
+import KeyboardControlsService from '@/js/services/KeyboardControlsService';
+
 
 let audio;
 let bgColor = 0;
 
-const VisualizerSketch = (p5) => {
+const VisualizerSketch = p5 => {
   'use strict';
 
-
   // keep all 'custom' code here
-
   p5.preload = () => {
     p5.objects = {};
     p5.objects.lambo = p5.loadModel('@/assets/3d_obj/lp670.obj', true);
@@ -36,9 +35,7 @@ const VisualizerSketch = (p5) => {
     p5.ctrlElementsArray = RegisteredSketches;
   };
 
-
   p5.setup = () => {
-
     p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL);
     p5.polygon = RenderPolygon;
     p5.colorMode(p5.HSB);
@@ -55,10 +52,7 @@ const VisualizerSketch = (p5) => {
     // p5setupPoseNet(p5);
   };
 
-
   p5.windowResized = () => {
-
-    // todo this is taxing on the browser find out how to optimize
     for (let ctrlElement in p5.ctrlElementsArray) {
       if (!p5.ctrlElementsArray.hasOwnProperty(ctrlElement)) {
         continue;
@@ -72,12 +66,10 @@ const VisualizerSketch = (p5) => {
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
   };
 
-
   let fftAnalysis = {};
   let tempObj;
   p5.draw = () => {
     p5.background(bgColor);
-
 
     // if (audio && audio.isLoaded() && !audio.isPaused()) {
     //   let seconds = Math.floor(audio.currentTime() % 60);
@@ -92,10 +84,10 @@ const VisualizerSketch = (p5) => {
     // fftAnalysis = getEQEnergy(fft);
     // applyAudioEnergyValues(fftAnalysis);
 
-    // playKeyboardKeys();
-    // p5.keyReleased = () => {
-    //   playPianoKey(p5.keyCode, false);
-    // };
+    KeyboardControlsService.playKeyboardKeys(p5);
+    p5.keyReleased = () => {
+      KeyboardControlsService.playPianoKey(p5.keyCode, false);
+    };
 
     for (let ctrlElement in p5.ctrlElementsArray) {
       if (!p5.ctrlElementsArray.hasOwnProperty(ctrlElement)) {
@@ -111,11 +103,8 @@ const VisualizerSketch = (p5) => {
       p5.ctrlElementsArray[ctrlElement].render(p5);
     }
   };
-
 };
 
-
 export default VisualizerSketch;
-
 
 
