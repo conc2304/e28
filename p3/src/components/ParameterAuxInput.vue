@@ -71,17 +71,14 @@ export default {
     },
 
     testMin(value) {
-      console.log(this.parameter);
       return value >= this.parameter.min;
     },
 
     setValue(event) {
-      console.log(event);
-      console.log(this.sketchSelected);
     },
 
     clear() {
-      console.log('clear');
+      setKey();
     },
   },
 };

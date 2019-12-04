@@ -53,7 +53,6 @@ export default {
     },
 
     addNewSketch() {
-      console.log('show pop up with sketches');
     },
 
     sketchOrderShift(deltaPos) {

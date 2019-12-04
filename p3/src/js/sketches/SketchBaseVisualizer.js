@@ -22,15 +22,15 @@ const VisualizerSketch = p5 => {
 
   // keep all 'custom' code here
   p5.preload = () => {
-    p5.objects = {};
-    p5.objects.lambo = p5.loadModel('@/assets/3d_obj/lp670.obj', true);
-    p5.objects.glock = p5.loadModel('@/assets/3d_obj/Glock 3d.obj', true);
-    p5.objects.dolphin = p5.loadModel('@/assets/3d_obj/dolphin.obj', true);
-    p5.objects.ducky = p5.loadModel('@/assets/3d_obj/ducky.obj', true);
-    p5.objects.satellite = p5.loadModel('@/assets/3d_obj/satellite.obj', true);
-    p5.objects.sword = p5.loadModel('@/assets/3d_obj/sword.obj', true);
-    p5.objects.whale = p5.loadModel('@/assets/3d_obj/whale.obj', true);
-    p5.objects.shuttle = p5.loadModel('@/assets/3d_obj/shuttle.obj', true);
+    // p5.objects = {};
+    // p5.objects.lambo = p5.loadModel('/assets/3d_obj/lp670.obj', true);
+    // p5.objects.glock = p5.loadModel('@/assets/3d_obj/Glock 3d.obj', true);
+    // p5.objects.dolphin = p5.loadModel('@/assets/3d_obj/dolphin.obj', true);
+    // p5.objects.ducky = p5.loadModel('@/assets/3d_obj/ducky.obj', true);
+    // p5.objects.satellite = p5.loadModel('@/assets/3d_obj/satellite.obj', true);
+    // p5.objects.sword = p5.loadModel('@/assets/3d_obj/sword.obj', true);
+    // p5.objects.whale = p5.loadModel('@/assets/3d_obj/whale.obj', true);
+    // p5.objects.shuttle = p5.loadModel('@/assets/3d_obj/shuttle.obj', true);
 
     p5.ctrlElementsArray = RegisteredSketches;
   };
