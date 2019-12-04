@@ -7,30 +7,30 @@ Production URL [http://p3.joseconchello.com/](http://p3.joseconchello.com/)
   
   Features 
   
-    * Home page has a mouse chasing p5js sketch
-    * Home page has a login/out feature (so far doesnt do much)
-    * Home page has a pop up with an explanation of the app
-    * Visualizer view is the main content page of the app.
-    * Visualizer menu has a layer selector to control individual layers
-    * Visualizer menu has control that randomize and reset the parameters of each layer
-    * Visualizer menu has a toggle to show/hide form fields for auxilliary input
-    * Toggling the aux input shows/hides inputs to control layer parameters with keyboard strokes
-    * Selecting a layer shows the layer controller menu
-    * Layer controller menu is broken up into expansion lists for each parameter category
-    * Layer control menu has menu buttons to: toggle visibility, randomize, and reset the layer
-    * Setting the visibility to off on a layer sets a red border on that layer
-    * Only one expansion list is able to open at a time
-    * Expansion list contains sliders and radio buttons to control elements
-    * Setting menu has audio player toggle to show/hide audio player
-    * Audio player does not work yet
+  * Home page has a mouse chasing p5js sketch
+  * Home page has a login/out feature (so far doesnt do much)
+  * Home page has a pop up with an explanation of the app
+  * Visualizer view is the main content page of the app.
+  * Visualizer menu has a layer selector to control individual layers
+  * Visualizer menu has control that randomize and reset the parameters of each layer
+  * Visualizer menu has a toggle to show/hide form fields for auxilliary input
+  * Toggling the aux input shows/hides inputs to control layer parameters with keyboard strokes
+  * Selecting a layer shows the layer controller menu
+  * Layer controller menu is broken up into expansion lists for each parameter category
+  * Layer control menu has menu buttons to: toggle visibility, randomize, and reset the layer
+  * Setting the visibility to off on a layer sets a red border on that layer
+  * Only one expansion list is able to open at a time
+  * Expansion list contains sliders and radio buttons to control elements
+  * Setting menu has audio player toggle to show/hide audio player
+  * Audio player does not work yet
     
     
-    In progress
-      * Audio player
-      * Ability for sketch parameters to respond to music
-      * Ability to add new layer
-      * Ability to remove existing layer
-      * Ability to shift order of layers
+  In progress
+  * Audio player
+  * Ability for sketch parameters to respond to music
+  * Ability to add new layer
+  * Ability to remove existing layer
+  * Ability to shift order of layers
 
 ## Outside resources
  - Vuetify https://vuetifyjs.com/en/
