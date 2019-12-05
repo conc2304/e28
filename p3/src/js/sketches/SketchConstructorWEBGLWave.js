@@ -48,14 +48,14 @@ class ThreeDWave {
       'ellipsoid',
       'cylinder',
       'cone',
-      // 'glock',
-      // 'lambo',
-      // 'shuttle',
-      // 'ducky',
-      // 'whale',
-      // 'dolphin',
-      // 'satellite',
-      // 'sword',
+      'glock',
+      'lambo',
+      'shuttle',
+      'ducky',
+      'whale',
+      'dolphin',
+      'satellite',
+      'sword',
     ]);
 
     this.yPoints = new Array(Math.floor(this.waveWidth / this.xSpacing.currentValue));

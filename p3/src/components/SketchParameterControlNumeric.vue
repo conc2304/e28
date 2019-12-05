@@ -33,8 +33,7 @@ export default {
   data: () => ({
     sliderConfig: false,
     sliderValues: false,
-    audioEnabled: false, // TODO enable when ready
-    auxEnabled: true, // TODO enable when ready
+    audioEnabled: true, // TODO enable when ready
   }),
 
   components: {

@@ -33,7 +33,7 @@
 export default {
   data: () => ({
     layerSelected: null,
-    layerAddEnabled: false,
+    layerAddEnabled: true,
     numSketches: 0,
   }),
 
