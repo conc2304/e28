@@ -22,7 +22,7 @@ Production URL [http://p3.joseconchello.com/](http://p3.joseconchello.com/)
   * Only one expansion list is able to open at a time
   * Expansion list contains sliders and radio buttons to control elements
   * Setting menu has audio player toggle to show/hide audio player
-  * Audio player does not work yet
+
     
     
   In progress
@@ -37,6 +37,8 @@ Production URL [http://p3.joseconchello.com/](http://p3.joseconchello.com/)
  - p5js https://p5js.org/
  - Vue with p5js https://medium.com/js-dojo/experiment-with-p5-js-on-vue-7ebc05030d33
  - Dependency Injection with Vue js https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d
+ - No Ui Slider https://www.npmjs.com/package/vue-nouislider-fork/v/1.0.8
+ - Material Icons https://material.io/resources/icons/?style=baseline
 
 
 ### Project setup
