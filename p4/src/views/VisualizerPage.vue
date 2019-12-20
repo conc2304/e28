@@ -9,7 +9,7 @@
       v-show="!masterMenuOpen"
       @click="masterMenuOpen = true"
       dark
-    ) menu
+    ) &#9776;
     AppSettingsMenu
 </template>
 
